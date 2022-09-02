@@ -1,6 +1,7 @@
 import React from "react";
+import Login from "../components/Login/Login";
 
 export default function LoginPage() {
   React.useEffect(() => {}, []);
-  return <div>로그인페이지</div>;
+  return <Login />;
 }

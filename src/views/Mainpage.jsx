@@ -4,9 +4,5 @@ import Layout from "../components/Layout/Layout";
 
 export default function MainPage() {
   React.useEffect(() => {}, []);
-  return (
-    <Layout>
-      <Header />
-    </Layout>
-  );
+  return <div>메인페이지</div>;
 }
