@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Post from "../Post/Post";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { getPosts } from "../../redux/module/postSlice";
+import { getPosts } from "../../apis/api";
 import Loadingpost from "../Loadingpost/Loadingpost";
 
 const Postlist = () => {

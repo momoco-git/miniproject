@@ -1,4 +1,4 @@
-import { api } from "../aixos/axios";
+import { api } from "../axios/axios";
 import axios from "axios";
 
 export const AccountAPI = {
