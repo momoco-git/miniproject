@@ -4,17 +4,17 @@ import styled from "styled-components";
 const LoadingPost = () => {
   return (
     <Div>
-        <Img>
+      <Img>
+        <Shimmer />
+      </Img>
+      <Wrap>
+        <Text>
           <Shimmer />
-        </Img>
-        <Wrap>
-          <Text>
-            <Shimmer />
-          </Text>
-          <Text>
-            <Shimmer />
-          </Text>
-        </Wrap>
+        </Text>
+        <Text>
+          <Shimmer />
+        </Text>
+      </Wrap>
     </Div>
   );
 };
@@ -37,6 +37,7 @@ const Shimmer = styled.div`
     }
   }
 `;
+export default LoadingPost;
 const Div = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,12 +67,10 @@ const Wrap = styled.div`
   flex-direction: column;
   padding: 0.4rem;
 `;
-
-export const Text = styled.div`
+const Text = styled.div`
   width: 200px;
   height: 30px;
   margin: 10px auto;
   overflow: hidden;
   background-color: #eeeeee;
 `;
-export default LoadingPost;

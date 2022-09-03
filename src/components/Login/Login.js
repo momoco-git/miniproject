@@ -2,9 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-=======
 import { AccountAPI } from "../../apis/api";
 import {
   setAccessToken,
@@ -12,7 +9,6 @@ import {
   getAccessToken,
 } from "../../redux/Cookie";
 import useInput from "../../hooks/useInput";
->>>>>>> main
 function Login() {
   const navigate = useNavigate();
   const [form, onChange, reset, setForm] = useInput();
@@ -109,6 +105,3 @@ const ButtonContainer = styled.div`
   gap: 10px;
   margin: 20px 0;
 `;
-
-
-
