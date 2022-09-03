@@ -1,15 +1,14 @@
 import React from "react";
-import Login from "../components/Login/Login";
 import styled from "styled-components";
-export default function LoginPage() {
+import Signup from "../components/Signup/Signup";
+export default function Signuppage() {
   React.useEffect(() => {}, []);
   return (
     <Backgound>
-      <Login />
+      <Signup />
     </Backgound>
   );
 }
-
 const Backgound = styled.div`
   width: 100vw;
   height: 100vh;

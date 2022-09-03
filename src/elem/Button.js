@@ -3,7 +3,12 @@ import styled, { css } from "styled-components";
 
 const Button = ({ children, ...rest }) => {
   return (
-    <BtnBx {...rest} onClick={rest._onClick} type={rest.type}>
+    <BtnBx
+      {...rest}
+      onClick={rest._onClick}
+      type={rest.type}
+      onMouseDown={rest._onMouseDown}
+    >
       {children}
     </BtnBx>
   );

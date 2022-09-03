@@ -1,26 +1,19 @@
 import axios from "axios";
-const BASE_URL = "";
+
+import { refresh, refreshErrorHandle } from "../apis/refreshToken";
+const BASE_URL = "https://9f6efb2e-bb0c-4421-96b7-6bc48821a83b.mock.pstmn.io";
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+  },
   // 토큰 추가하기
-  withCredentials: true,
-  timeout: 3000,
+  withCredentials: false,
+  timeout: 1000,
 });
 
-api.interceptors.request.use(
-  function (config) {
-    // 요청을 보내기 전에 수행할 일
-    // ...
-    return config;
-  },
-  function (error) {
-    // 오류 요청을 보내기전 수행할 일
-    // ...
-    return Promise.reject(error);
-  }
-);
+api.interceptors.request.use(refresh, refreshErrorHandle);
 
 api.interceptors.response.use(
   function (response) {
