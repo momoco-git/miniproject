@@ -22,6 +22,7 @@ const refresh = async config => {
   }
 
   config.headers["Authorization"] = `Bearer ${accessToken}`;
+  config.headers["refreshToken"] = `Bearer ${refreshToken}`;
 
   return config;
 };
