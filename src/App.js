@@ -7,20 +7,18 @@ import Mainpage from "./views/Mainpage";
 import Modifypage from "./views/ModifyPage";
 
 import Layout from "./components/Layout/Layout";
-import Signup from "./components/Signup/Signup";
+
+import Signuppage from "./views/Signuppage";
 function App() {
   return (
     <div>
-      <Layout>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Mainpage />} />
-          <Route path="/login" element={<Loginpage />} />
-          <Route path="/modify" element={<Modifypage />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/detail/:id" element={<Detail />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/" element={<Mainpage />} />
+        <Route path="/login" element={<Loginpage />} />
+        <Route path="/modify" element={<Modifypage />} />
+        <Route path="/signup" element={<Signuppage />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
     </div>
   );
 }

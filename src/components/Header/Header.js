@@ -8,14 +8,19 @@ import {
   removeAccessToken,
   removeRefreshToken,
 } from "../../redux/Cookie";
-export default function Header() {
+function Header() {
   const [isToken, setToken] = useState(false);
-
+  const RefreshToken = getRefreshToken();
   useEffect(() => {
     setToken(getAccessToken() === undefined ? false : true);
-    console.log("변경");
-  });
-  const navigate = useNavigate;
+  }, [isToken]);
+
+  const navigate = useNavigate();
+
+  const removeToken = () => {
+    removeAccessToken();
+    removeRefreshToken();
+  };
   return (
     <Flex between={true} bg="#9ED2C6" pd="4px" mg="0 0 50px 0">
       <Text fs="2rem" fw="bold">
@@ -32,9 +37,8 @@ export default function Header() {
             outline={true}
             small={true}
             type="button"
-            onClick={() => {
-              removeAccessToken();
-              removeRefreshToken();
+            _onClick={() => {
+              removeToken();
             }}
           >
             로그아웃
@@ -55,3 +59,4 @@ export default function Header() {
     </Flex>
   );
 }
+export default Header;

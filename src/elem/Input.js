@@ -7,11 +7,13 @@ const Input = props => {
     hei,
     type,
     label,
+    name,
     placeholder,
     multiLine,
     _onChange,
     _value,
     _onKeyPress,
+    ref,
   } = props;
 
   if (multiLine) {
@@ -21,6 +23,7 @@ const Input = props => {
         <TextArea
           placeholder={placeholder}
           rows={20}
+          ref={ref}
           onChange={_onChange}
           value={_value}
         />
@@ -32,6 +35,8 @@ const Input = props => {
     <React.Fragment>
       {label && <Text margin="20px 5px 5px 0">{label}</Text>}
       <NormalInput
+        ref={ref}
+        name={name}
         hei={hei}
         type={type}
         placeholder={placeholder}
@@ -48,6 +53,7 @@ Input.defaultProps = {
   type: "text",
   placeholder: "",
   multiLine: false,
+
   _onChange: () => {},
   _onKeyPress: () => {},
 };

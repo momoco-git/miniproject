@@ -6,39 +6,43 @@ function Signup() {
   const [correctID, setcorrectID] = useState(false);
   const [correctPW, setcorrectPW] = useState(false);
   return (
-    <Flex center="center">
-      <Logincantainer>
-        <FormBox>
-          <>
-            <Input placeholder="아이디를 입력하세요"></Input>
-            {correctID ? (
-              <Text color="red" fs="0.8rem">
-                "아이디가 중복되었습니다"
-              </Text>
-            ) : (
-              ""
-            )}
-          </>
-          <Input placeholder="닉네임를 입력하세요"></Input>
-          <Input placeholder="비밀번호를 입력하세요" type="password"></Input>
-          <Input
-            placeholder="비밀번호를 한번더 입력하세요"
-            type="password"
-          ></Input>
+    <Wrap>
+      <Flex center="center">
+        <Logincantainer>
+          <FormBox>
+            <>
+              <Input placeholder="아이디를 입력하세요"></Input>
+              {correctID ? (
+                <Text color="red" fs="0.8rem">
+                  "아이디가 중복되었습니다"
+                </Text>
+              ) : (
+                ""
+              )}
+            </>
+            <Input placeholder="닉네임를 입력하세요"></Input>
+            <Input placeholder="비밀번호를 입력하세요" type="password"></Input>
+            <Input
+              placeholder="비밀번호를 한번더 입력하세요"
+              type="password"
+            ></Input>
 
-          <Button outline={true} width="60%" mg="20px auto 20px auto">
-            회원가입
-          </Button>
-        </FormBox>
-      </Logincantainer>
-    </Flex>
+            <Button outline={true} width="60%" mg="20px auto 20px auto">
+              회원가입
+            </Button>
+          </FormBox>
+        </Logincantainer>
+      </Flex>
+    </Wrap>
   );
 }
 
 export default Signup;
-
+const Wrap = styled.div`
+  width: 100%;
+`;
 const Logincantainer = styled.div`
-  width: 60%;
+  width: 40%;
   height: 60%;
 
   border: 5px solid #9ed2c6;
@@ -50,7 +54,7 @@ const Logincantainer = styled.div`
   align-items: center;
 `;
 
-const FormBox = styled.form`
+const FormBox = styled.div`
   width: 70%;
   margin: 10px auto 0 auto;
   display: flex;
