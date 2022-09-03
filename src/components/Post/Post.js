@@ -2,24 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { __updatePost } from "../redux/module/postSlice";
+import { __updatePost } from "../../redux/module/postSlice";
 
+const Post = React.forwardRef((post, ref) => {
+  const { id, nick, body, like, coverUrl } = post;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const Post = React.forwardRef((post, ref) => {
-        const { id, nick, body, like, coverUrl } = post
-        const dispatch = useDispatch();
-        const navigate = useNavigate();
-      
-        const likeHandler = (e) => {
-          e.preventDefault()
-          const updateLike = {
-            id,
-            like: !like
-          }
-          dispatch(__updatePost(updateLike))
-          if(!like)alert("liked!")
-        };
-return (
+  const likeHandler = e => {
+    e.preventDefault();
+    const updateLike = {
+      id,
+      like: !like,
+    };
+    dispatch(__updatePost(updateLike));
+    if (!like) alert("liked!");
+  };
+  return (
     <div>
       {like ? (
         <Like onClick={likeHandler}>♥️</Like>
@@ -34,10 +33,10 @@ return (
       />
       <Nick>{nick}</Nick>
       <Body>{body}</Body>
-      <div ref={ref}/>
+      <div ref={ref} />
     </div>
-)}
-)
+  );
+});
 
 const CoverImg = styled.img`
   width: 250px;
