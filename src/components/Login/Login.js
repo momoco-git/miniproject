@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom'
 function Login() {
   const navigate = useNavigate();
   return (
@@ -64,3 +65,6 @@ const ButtonContainer = styled.div`
   gap: 10px;
   margin: 20px 0;
 `;
+
+
+

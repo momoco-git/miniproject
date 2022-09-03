@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button, Text } from "../../elem";
+import { Link } from 'react-router-dom'
 
 function Login() {
   const [correctID, setcorrectID] = useState(false);
@@ -58,3 +59,5 @@ const FormBox = styled.form`
   justify-content: center;
   align-items: center;
 `;
+
+
