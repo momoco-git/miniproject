@@ -1,6 +1,7 @@
 import React from "react";
-import Signin from "../components/Signin/Signin";
+
+import Signup from "../components/Signup/Signup";
 export default function SignIn() {
   React.useEffect(() => {}, []);
-  return <Signin />;
+  return <Signup />;
 }

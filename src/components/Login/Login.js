@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
+import { AccountAPI, PostList } from "../../apis/api";
+import {
+  setAccessToken,
+  setRefreshToken,
+  getAccessToken,
+} from "../../redux/Cookie";
 function Login() {
   const navigate = useNavigate();
+  const getlogin = async () => {
+    //요기 백이랑 연결하면 데이터 가져오는거 바꾸기
+    const response = await AccountAPI.getlogin({
+      userName: "test",
+      password: "1234",
+    });
+    setAccessToken(response.data[0].AccessToken);
+    setRefreshToken(response.data[1].RefreshToken);
+    let tests = getAccessToken();
+    console.log(tests);
+  };
+
+  const getpost = async () => {
+    const response = await PostList.getPostList();
+    console.log(response.data);
+  };
+
   return (
     <Flex center="center">
       <Logincantainer>
@@ -13,7 +36,14 @@ function Login() {
           <Input placeholder="비밀번호를 입력하세요" type="password"></Input>
 
           <ButtonContainer>
-            <Button width="60%" outline={true} mg="auto">
+            <Button
+              width="60%"
+              outline={true}
+              mg="auto"
+              _onClick={() => {
+                getlogin();
+              }}
+            >
               로그인
             </Button>
             <Button
@@ -21,7 +51,8 @@ function Login() {
               width="60%"
               mg="auto"
               _onClick={() => {
-                navigate("/signin");
+                getpost();
+                // navigate("/signup");
               }}
             >
               회원가입하러 가기
@@ -48,7 +79,7 @@ const Logincantainer = styled.div`
   align-items: center;
 `;
 
-const FormBox = styled.form`
+const FormBox = styled.div`
   width: 70%;
   margin: 10px auto 0 auto;
   display: flex;

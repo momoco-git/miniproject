@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button, Text } from "../../elem";
 
-function Login() {
+function Signup() {
   const [correctID, setcorrectID] = useState(false);
   const [correctPW, setcorrectPW] = useState(false);
   return (
@@ -35,7 +35,7 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
 
 const Logincantainer = styled.div`
   width: 60%;
