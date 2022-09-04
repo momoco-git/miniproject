@@ -1,23 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
 
-const Post = React.forwardRef((post, ref) => {
-  const { id, nick, body, like, coverUrl } = post;
+const Item = React.forwardRef((post, ref) => {
+  const { id, body, nick, like, coverUrl } = post
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const likeHandler = e => {
-    e.preventDefault();
+  const likeHandler = (e) => {
+    e.preventDefault()
     const updateLike = {
       id,
-      like: !like,
-    };
-    dispatch(__updatePost(updateLike));
-    if (!like) alert("liked!");
+      like: !like
+    }
+    dispatch(__updatePost(updateLike))
+    if(!like)alert("liked!")
   };
+
   return (
     <div>
       {like ? (
@@ -33,7 +34,7 @@ const Post = React.forwardRef((post, ref) => {
       />
       <Nick>{nick}</Nick>
       <Body>{body}</Body>
-      <div ref={ref} />
+      <div ref={ref}/>
     </div>
   );
 });
@@ -61,4 +62,4 @@ const Like = styled.div`
   color: #fa1e2d;
   box-shadow: 3px 3px 10px black;
 `;
-export default Post;
+export default Item;

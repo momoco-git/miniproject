@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import Post from "../Post/Post";
+import Item from "../../components/Item/Item";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { getPosts } from "../../apis/api";
-import Loadingpost from "../Loadingpost/Loadingpost";
+import { getItems } from "../../apis/api";
+import LoadingItem from "../../components/LoadingItem/LoadingItem";
 
-const Postlist = () => {
-  const [posts, setPosts] = useState([]);
+const List = () => {
+  const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
-  const [Loadingpost, setLoadingpost] = useState(true);
+  const [loadingItem, setLoadingItem] = useState(true);
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView({
     threshold: 1,
@@ -20,54 +20,54 @@ const Postlist = () => {
     });
   };
 
-  const loadPosts = useCallback(async () => {
+  const loadItems = useCallback(async () => {
     setLoading(true);
-    await getPosts(page, 6).then(res => {
-      setPosts(prevState => [...prevState, res]);
+    await getItems(page, 6).then((res) => {
+      setItems((prevState) => [...prevState, res]);
     });
     setLoading(false);
   }, [page]);
 
   const loadSkeleton = () => (
     <>
-      <Loadingpost />
-      <Loadingpost />
-      <Loadingpost />
-      <Loadingpost />
-      <Loadingpost />
-      <Loadingpost />
+      <LoadingItem />
+      <LoadingItem />
+      <LoadingItem />
+      <LoadingItem />
+      <LoadingItem />
+      <LoadingItem />
     </>
   );
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    loadPosts();
-  }, [loadPosts]);
+    loadItems();
+  }, [loadItems]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
       setTimeout(() => {
-        setPage(prevState => prevState + 1);
+        setPage((prevState) => prevState + 1);
       }, 800);
     } else if (inView && loading) {
-      setLoadingpost(false);
+      setLoadingItem(false);
     } else {
-      setLoadingpost(true);
+      setLoadingItem(true);
     }
   }, [inView, loading]);
 
   return (
     <ListDiv>
-      {posts &&
-        posts.map(post =>
-          post.map((post, idx) => (
+      {items &&
+        items.map((post) =>
+        post.map((post, idx) => (
             <ItemDiv key={idx}>
-              <Post {...post} key={post.id} ref={ref} />
+              <Item {...post} key={post.id} ref={ref} />
             </ItemDiv>
           ))
         )}
-      {Loadingpost ? loadSkeleton() : <EndMessage>end of the page</EndMessage>}
+      {loadingItem ? loadSkeleton() : (<EndMessage>end of the page</EndMessage>)}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
     </ListDiv>
   );
@@ -105,6 +105,6 @@ const ToTheTopButton = styled.button`
   }
 `;
 const EndMessage = styled.h1`
-  margin: 100px auto;
+margin: 100px auto;
 `;
-export default Postlist;
+export default List;

@@ -1,0 +1,46 @@
+{
+  "post": [
+    {
+      "id": 1,
+      "nick": "asd",
+      "body": "qwe",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": true
+    },
+    {
+      "id": 2,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 3,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 4,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 5,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 6,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    }
+  ]
+}
