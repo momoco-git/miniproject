@@ -8,28 +8,29 @@ import { idCheck } from "../../regExp";
 import AlertBar from "../alertbar/Alertbar";
 function Signup() {
   const navigate = useNavigate();
-  const [form, onChange, reset, setForm] = useInput(null);
+  const [form, onChange, reset, setForm] = useInput("");
   const [errortext, seterror] = useState(null);
   const postAccount = async () => {
-    if (form.username === null) {
+    if (form.username === "") {
       return seterror("아이디를 입력해주세요");
     } else if (idCheck(form.username) === false) {
       return seterror("아이디에 특무문자는 들어갈 수 없습니다");
-    } else if (form.nickname === null) {
+    } else if (form.nickname === "") {
       return seterror("닉네임을 입력해주세요");
-    } else if (form.password === null) {
+    } else if (form.password === "") {
       return seterror("비밀번호를 입력해주세요");
     } else if (form.password !== form.passwordCheck) {
       return seterror("비밀번호가 일치하지 않습니다.");
+    } else {
+      return AccountAPI.getSignInAccount(form)
+        .then(() => {
+          window.alert("가입완료!");
+          navigate("/");
+        })
+        .catch(err => {
+          seterror(String(err));
+        });
     }
-    AccountAPI.getSignInAccount(form)
-      .then(() => {
-        window.alert("가입완료!");
-        navigate("/");
-      })
-      .catch(err => {
-        seterror(String(err));
-      });
   };
 
   return (

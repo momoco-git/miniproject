@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { refresh, refreshErrorHandle } from "../apis/refreshToken";
-const BASE_URL = "http://54.177.177.138";
+const BASE_URL = "//54.177.177.138";
 
 export const api = axios.create({
   baseURL: BASE_URL,

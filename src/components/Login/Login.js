@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import logo from "./testgif.gif";
+
 import { idCheck } from "../../regExp";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
@@ -24,13 +24,12 @@ function Login() {
     } else if (form.password === "") {
       return seterror("비밀번호를 입력해주세요");
     } else {
-      //요기 백이랑 연결하면 데이터 가져오는거 바꾸기
-      const response = await AccountAPI.getlogin(form).catch(err => {
+      return await AccountAPI.getlogin(form).catch(err => {
         seterror(String(err));
       });
 
-      setAccessToken(response.data.AccessToken);
-      setRefreshToken(response.data.RefreshToken);
+      // setAccessToken(response.data.AccessToken);
+      // setRefreshToken(response.data.RefreshToken);
       seterror("");
     }
   };
@@ -42,7 +41,7 @@ function Login() {
   return (
     <Screen>
       {errortext && <AlertBar errortext={errortext} wd="50%" mg="auto" />}
-      <Wrap logo={logo}>
+      <Wrap>
         <Flex center="center">
           <Logincantainer>
             <FormBox>
