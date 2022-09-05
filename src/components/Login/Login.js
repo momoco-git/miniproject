@@ -41,7 +41,7 @@ function Login() {
   };
   return (
     <Screen>
-      {errortext && <AlertBar errortext={errortext} />}
+      {errortext && <AlertBar errortext={errortext} wd="50%" mg="auto" />}
       <Wrap logo={logo}>
         <Flex center="center">
           <Logincantainer>
@@ -66,6 +66,7 @@ function Login() {
                   mg="auto"
                   _onClick={() => {
                     getlogin();
+                    console.log(window.location.origin);
                   }}
                 >
                   로그인
