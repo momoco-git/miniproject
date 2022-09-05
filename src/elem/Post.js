@@ -9,7 +9,7 @@ const Nick = ({ children, ...rest }) => {
 // `;
  Nick = styled.h2`
   font-size: 17px;
-`;)
+`);
 const Body = styled.h1`
   font-size: 25px;
 `;
@@ -23,4 +23,4 @@ const Like = styled.div`
   border-radius: 50%;
   color: #fa1e2d;
   box-shadow: 3px 3px 10px black;
-`;
+`};

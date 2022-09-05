@@ -24,6 +24,7 @@ const Input = props => {
           placeholder={placeholder}
           rows={20}
           ref={ref}
+          name={name}
           onChange={_onChange}
           value={_value}
         />
@@ -60,8 +61,8 @@ Input.defaultProps = {
 
 const NormalInput = styled.input`
   height: ${props => props.hei};
-  border: 1px solid #c4c4c4;
-  border-radius: 4px;
+  border: 3px solid #c4c4c4;
+  border-radius: 6px;
   width: 100%;
   padding: 8px 8px;
   box-sizing: border-box;
@@ -71,6 +72,9 @@ const NormalInput = styled.input`
   &:focus {
     outline: none;
     border: 2px solid #54bab9;
+    &::placeholder {
+      opacity: 0;
+    }
   }
 `;
 
@@ -78,6 +82,7 @@ const TextArea = styled.textarea`
   border: 1px solid #c4c4c4;
   border-radius: 4px;
   width: 100%;
+  height: 30%;
   padding: 8px 8px;
   box-sizing: border-box;
   resize: none;
@@ -85,7 +90,10 @@ const TextArea = styled.textarea`
   margin-top: 15px;
   &:focus {
     outline: none;
-    border: 1px solid #ff7776;
+    border: 1px solid #54bab9;
+    &::placeholder {
+      opacity: 0;
+    }
   }
 `;
 

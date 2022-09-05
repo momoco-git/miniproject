@@ -39,6 +39,7 @@ function Header() {
             type="button"
             _onClick={() => {
               removeToken();
+              navigate("/");
             }}
           >
             로그아웃
