@@ -30,12 +30,12 @@ const Postlist = () => {
 
   const loadSkeleton = () => (
     <>
+      {/* <Loadingpost />
       <Loadingpost />
       <Loadingpost />
       <Loadingpost />
       <Loadingpost />
-      <Loadingpost />
-      <Loadingpost />
+      <Loadingpost /> */}
     </>
   );
 

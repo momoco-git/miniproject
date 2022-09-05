@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { refresh, refreshErrorHandle } from "../apis/refreshToken";
-const BASE_URL = "https://9f6efb2e-bb0c-4421-96b7-6bc48821a83b.mock.pstmn.io";
+const BASE_URL = "https://miniprojectteam.herokuapp.com";
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -10,7 +10,7 @@ export const api = axios.create({
   },
   // 토큰 추가하기
   withCredentials: false,
-  timeout: 1000,
+  timeout: 3000,
 });
 
 api.interceptors.request.use(refresh, refreshErrorHandle);
