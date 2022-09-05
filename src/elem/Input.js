@@ -24,6 +24,7 @@ const Input = props => {
           placeholder={placeholder}
           rows={20}
           ref={ref}
+          name={name}
           onChange={_onChange}
           value={_value}
         />
@@ -81,6 +82,7 @@ const TextArea = styled.textarea`
   border: 1px solid #c4c4c4;
   border-radius: 4px;
   width: 100%;
+  height: 30%;
   padding: 8px 8px;
   box-sizing: border-box;
   resize: none;
@@ -88,7 +90,10 @@ const TextArea = styled.textarea`
   margin-top: 15px;
   &:focus {
     outline: none;
-    border: 1px solid #ff7776;
+    border: 1px solid #54bab9;
+    &::placeholder {
+      opacity: 0;
+    }
   }
 `;
 

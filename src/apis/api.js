@@ -4,7 +4,7 @@ import axios from "axios";
 export const AccountAPI = {
   getlogin: data => api.post("/api/member/login", data),
   getOneAccount: accountId => api.get(`/${accountId}`),
-  getSignInAccount: form => api.post("/users", form),
+  getSignInAccount: form => api.post("/api/member/signup", form),
 };
 
 export const PostList = {

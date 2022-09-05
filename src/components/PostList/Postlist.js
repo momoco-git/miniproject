@@ -3,9 +3,11 @@ import Post from "../Post/Post";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { getPosts } from "../../apis/api";
+import { useNavigate } from "react-router-dom";
 import Loadingpost from "../Loadingpost/Loadingpost";
 
 const Postlist = () => {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [Loadingpost, setLoadingpost] = useState(true);
@@ -69,6 +71,13 @@ const Postlist = () => {
         )}
       {Loadingpost ? loadSkeleton() : <EndMessage>end of the page</EndMessage>}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
+      <AddPostButton
+        onClick={() => {
+          navigate("/addpost");
+        }}
+      >
+        +
+      </AddPostButton>
     </ListDiv>
   );
 };
@@ -88,7 +97,7 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-  top: 20px;
+  top: 80px;
   margin: 5px 2px;
   padding: 15px;
   background-color: transparent;
@@ -106,5 +115,25 @@ const ToTheTopButton = styled.button`
 `;
 const EndMessage = styled.h1`
   margin: 100px auto;
+`;
+
+const AddPostButton = styled.div`
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+
+  padding: 15px;
+  background-color: white;
+  width: "100px";
+  font-size: 2rem;
+  color: #764abc;
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+  transition: 0.5s;
+  &:hover {
+    background-color: #764abc;
+    color: white;
+  }
 `;
 export default Postlist;
