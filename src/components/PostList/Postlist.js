@@ -81,6 +81,7 @@ const Postlist = () => {
     </ListDiv>
   );
 };
+export default Postlist;
 const ItemDiv = styled.div`
   background-color: white;
   margin: 20px auto;
@@ -136,4 +137,3 @@ const AddPostButton = styled.div`
     color: white;
   }
 `;
-export default Postlist;
