@@ -9,6 +9,8 @@ const FlexBx = styled.div`
   display: flex;
   align-items: center;
   gap: ${props => props.gap};
+  width: ${props => props.wd};
+  height: ${props => props.hi};
   ${props =>
     props.center &&
     css`

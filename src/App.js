@@ -1,14 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header";
 import Detail from "./views/Detail";
 import Loginpage from "./views/Loginpage";
 import Mainpage from "./views/Mainpage";
 import Modifypage from "./views/ModifyPage";
-
-import Layout from "./components/Layout/Layout";
-
 import Signuppage from "./views/Signuppage";
+import Addpost from "./views/Addpost";
 function App() {
   return (
     <div>
@@ -18,6 +15,7 @@ function App() {
         <Route path="/modify" element={<Modifypage />} />
         <Route path="/signup" element={<Signuppage />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/addpost" element={<Addpost />} />
       </Routes>
     </div>
   );

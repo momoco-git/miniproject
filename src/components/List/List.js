@@ -2,11 +2,12 @@ import styled from "styled-components";
 import Item from "../../components/Item/Item";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+
 import { getItems } from "../../apis/api";
 import LoadingItem from "../../components/LoadingItem/LoadingItem";
-
 const List = () => {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [loadingItem, setLoadingItem] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -22,8 +23,8 @@ const List = () => {
 
   const loadItems = useCallback(async () => {
     setLoading(true);
-    await getItems(page, 6).then((res) => {
-      setItems((prevState) => [...prevState, res]);
+    await getItems(page, 6).then(res => {
+      setItems(prevState => [...prevState, res]);
     });
     setLoading(false);
   }, [page]);
@@ -48,7 +49,7 @@ const List = () => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView && !loading) {
       setTimeout(() => {
-        setPage((prevState) => prevState + 1);
+        setPage(prevState => prevState + 1);
       }, 800);
     } else if (inView && loading) {
       setLoadingItem(false);
@@ -60,18 +61,26 @@ const List = () => {
   return (
     <ListDiv>
       {items &&
-        items.map((post) =>
-        post.map((post, idx) => (
+        items.map(post =>
+          post.map((post, idx) => (
             <ItemDiv key={idx}>
               <Item {...post} key={post.id} ref={ref} />
             </ItemDiv>
           ))
         )}
-      {loadingItem ? loadSkeleton() : (<EndMessage>end of the page</EndMessage>)}
+      {loadingItem ? loadSkeleton() : <EndMessage>end of the page</EndMessage>}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
+      <AddPostButton
+        onClick={() => {
+          navigate("/addpost");
+        }}
+      >
+        +
+      </AddPostButton>
     </ListDiv>
   );
 };
+
 const ItemDiv = styled.div`
   background-color: white;
   margin: 20px auto;
@@ -88,7 +97,7 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-  top: 20px;
+  top: 80px;
   margin: 5px 2px;
   padding: 15px;
   background-color: transparent;
@@ -105,6 +114,27 @@ const ToTheTopButton = styled.button`
   }
 `;
 const EndMessage = styled.h1`
-margin: 100px auto;
+  margin: 100px auto;
 `;
+
 export default List;
+
+const AddPostButton = styled.div`
+  position: fixed;
+  right: 20px;
+  bottom: 80px;
+
+  padding: 15px;
+  background-color: white;
+  width: "100px";
+  font-size: 2rem;
+  color: #764abc;
+  cursor: pointer;
+  border-radius: 100px;
+  border: none;
+  transition: 0.5s;
+  &:hover {
+    background-color: #764abc;
+    color: white;
+  }
+`;
