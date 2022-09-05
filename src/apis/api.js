@@ -4,15 +4,15 @@ import axios from "axios";
 export const AccountAPI = {
   getlogin: data => api.post("/api/member/login", data),
   getOneAccount: accountId => api.get(`/${accountId}`),
-  getSignInAccount: form => api.post(""),
+  getSignInAccount: form => api.post("/users", form),
 };
 
 export const PostList = {
   getPostList: () => api.get("/api/post"),
-  getOnePost: postId => api.get(`/${postId}`),
-  getAddPost: form => api.post("", form),
-  getDeletePost: postId => api.delete(`/${postId}`),
-  getPatchPost: post => api.patch(`/${post.id}`, post),
+  getOnePost: postId => api.get(`/api/post/${postId}`),
+  getAddPost: form => api.post("/api/auth/post", form),
+  getDeletePost: postId => api.delete(`/api/auth/post/{id}/${postId}`),
+  getPatchPost: post => api.patch(`/api/auth/post/{id}/${post.id}`, post),
 };
 
 const URL = "http://localhost:3001/post";
