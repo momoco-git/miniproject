@@ -17,7 +17,7 @@ export const PostList = {
 
 const URL = "http://localhost:3001/post";
 const instance = axios.create({ baseURL: URL });
-export const getPosts = async (page, limit) => {
+export const getItems = async (page, limit) => {
   const response = await instance.get(`/?_page=${page}&_limit=${limit}`);
   return response.data;
 };
