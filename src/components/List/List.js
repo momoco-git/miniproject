@@ -89,7 +89,7 @@ const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
   top: 20px;
-  margin: 5px 2px;
+  margin: 800px 2px;
   padding: 15px;
   background-color: transparent;
   width: "100px";
