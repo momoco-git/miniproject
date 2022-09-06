@@ -6,7 +6,7 @@ const BASE_URL = "http://54.177.177.138";
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Accept": "application/json",
+    "Accept": "*/*",
     "Content-Type": "application/json",
   },
   // 토큰 추가하기
