@@ -1,28 +1,33 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button, Text } from "../../elem";
-import useInput from "../../hooks/useInput";
+import useForm from "../../hooks/useForm";
 import { AccountAPI, PostList } from "../../apis/api";
 import { useNavigate } from "react-router-dom";
 import { idCheck } from "../../regExp";
 import AlertBar from "../alertbar/Alertbar";
 function Signup() {
   const navigate = useNavigate();
-  const [form, onChange, reset, setForm] = useInput(null);
+  const [form, onChange, reset, setForm] = useForm("");
   const [errortext, seterror] = useState(null);
-  const postAccount = async () => {
-    if (form.username === null) {
+  const [checkForm, setcheckForm] = useState(false);
+  const checkAccount = async () => {
+    if (form.username === undefined) {
       return seterror("아이디를 입력해주세요");
     } else if (idCheck(form.username) === false) {
       return seterror("아이디에 특무문자는 들어갈 수 없습니다");
-    } else if (form.nickname === null) {
+    } else if (form.nickname === undefined) {
       return seterror("닉네임을 입력해주세요");
-    } else if (form.password === null) {
+    } else if (form.password === undefined) {
       return seterror("비밀번호를 입력해주세요");
-    } else if (form.password !== form.passwordCheck) {
+    } else if (form.password !== form.passwordConfirm) {
       return seterror("비밀번호가 일치하지 않습니다.");
+    } else {
+      return setcheckForm(true);
     }
-    AccountAPI.getSignInAccount(form)
+  };
+  const postAccount = async () => {
+    const res = AccountAPI.getSignInAccount(form)
       .then(() => {
         window.alert("가입완료!");
         navigate("/");
@@ -31,7 +36,6 @@ function Signup() {
         seterror(String(err));
       });
   };
-
   return (
     <>
       <Screen>
@@ -60,7 +64,7 @@ function Signup() {
                 ></Input>
                 <Input
                   placeholder="비밀번호를 한번더 입력하세요"
-                  name="passwordCheck"
+                  name="passwordConfirm"
                   _onChange={onChange}
                   type="password"
                 ></Input>
@@ -70,7 +74,8 @@ function Signup() {
                   width="60%"
                   mg="20px auto 20px auto"
                   _onClick={() => {
-                    postAccount();
+                    checkAccount();
+                    checkForm && postAccount();
                   }}
                 >
                   회원가입

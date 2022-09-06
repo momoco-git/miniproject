@@ -1,44 +1,51 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 // import logo from "./testgif.gif";
+=======
+import { useDispatch } from "react-redux";
+>>>>>>> df7a64daa66c1e9f4dfae2ab6a1951f9e80ee51c
 import { idCheck } from "../../regExp";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
 import { AccountAPI, PostList } from "../../apis/api";
+import { getUserInfo } from "../../redux/module/userSlice";
 import {
   setAccessToken,
   setRefreshToken,
   getAccessToken,
 } from "../../redux/Cookie";
-import useInput from "../../hooks/useInput";
+import useForm from "../../hooks/useForm";
 import AlertBar from "../alertbar/Alertbar";
 function Login() {
   const navigate = useNavigate();
-  const [form, onChange] = useInput("");
-  const [errortext, seterror] = useState("");
-  const getlogin = async () => {
-    if (form.username === "") {
+  const dispatch = useDispatch();
+  const [form, onChange] = useForm("");
+  const [errortext, seterror] = useState(false);
+  const [checkForm, setcheckForm] = useState(false);
+  const checklogin = () => {
+    if (form.username === undefined) {
       return seterror("아이디를 입력해주세요");
     } else if (idCheck(form.username) === false) {
       return seterror("아이디에 특무문자는 들어갈 수 없습니다");
-    } else if (form.password === "") {
+    } else if (form.password === undefined) {
       return seterror("비밀번호를 입력해주세요");
     } else {
-      //요기 백이랑 연결하면 데이터 가져오는거 바꾸기
-      const response = await AccountAPI.getlogin(form).catch(err => {
-        seterror(String(err));
-      });
-
-      setAccessToken(response.data.AccessToken);
-      setRefreshToken(response.data.RefreshToken);
-      seterror("");
+      return setcheckForm(true);
     }
   };
 
-  const getpost = async () => {
-    const response = await PostList.getPostList();
-    console.log(response);
+  const getlogin = async () => {
+    const res = await AccountAPI.getlogin(form).catch(err => {
+      seterror(String(err));
+      console.log(res);
+    });
+    // dispatch(getUserInfo(res.data));
+    // setAccessToken(response.AccessToken);
+    // setRefreshToken(response.RefreshToken);
+    seterror("");
   };
+
   return (
     <Screen>
       {errortext && <AlertBar errortext={errortext} wd="50%" mg="auto" />}
@@ -65,8 +72,9 @@ function Login() {
                   outline={true}
                   mg="auto"
                   _onClick={() => {
-                    getlogin();
+                    checklogin();
                     console.log(window.location.origin);
+                    checkForm && getlogin();
                   }}
                 >
                   로그인
@@ -77,7 +85,6 @@ function Login() {
                   mg="auto"
                   _onClick={() => {
                     navigate("/signup");
-                    getpost();
                   }}
                 >
                   회원가입하러 가기

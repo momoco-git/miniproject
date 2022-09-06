@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Item from "../../components/Item/Item";
+import Item from "../Item/Item";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import { getItems } from "../../apis/api";
-import LoadingItem from "../../components/LoadingItem/LoadingItem";
-const List = () => {
+import LoadingItem from "../LoadingItem/LoadingItem";
+const Mypostlist = () => {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -23,7 +23,7 @@ const List = () => {
 
   const loadItems = useCallback(async () => {
     setLoading(true);
-    await getItems(page, 8).then(res => {
+    await getItems(page, 6).then(res => {
       setItems(prevState => [...prevState, res]);
     });
     setLoading(false);
@@ -31,8 +31,6 @@ const List = () => {
 
   const loadSkeleton = () => (
     <>
-      <LoadingItem />
-      <LoadingItem />
       <LoadingItem />
       <LoadingItem />
       <LoadingItem />
@@ -58,7 +56,6 @@ const List = () => {
     } else {
       setLoadingItem(true);
     }
-    console.log(items);
   }, [inView, loading]);
 
   return (
@@ -85,20 +82,14 @@ const List = () => {
 };
 
 const ItemDiv = styled.div`
-  background-color: #11ffee00;  /* 완전 투명 */
+  background-color: white;
   margin: 20px auto;
   width: 250px;
   height: 400px;
   box-shadow: 1px 1px 15px grey;
-  border-radius: 30px;
-  &:hover {
-    background-color: #764abc;
-    background-color: hsla(50, 33%, 25%, 0.75);
-    color: white;
-  }
 `;
 const ListDiv = styled.div`
-  width: 1100px;
+  width: 800px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -106,20 +97,10 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-<<<<<<< HEAD
-
-  top: 20px;
-  right: 20px;
-  bottom: 40px;
-
-  top: 80px;
-  margin: 5px 2px;
-=======
   top: 100px;
->>>>>>> df7a64daa66c1e9f4dfae2ab6a1951f9e80ee51c
 
   padding: 15px;
-  background-color: #11ffee00;  
+  background-color: transparent;
   width: "100px";
   font-size: 20px;
   color: #764abc;
@@ -136,7 +117,7 @@ const EndMessage = styled.h1`
   margin: 100px auto;
 `;
 
-export default List;
+export default Mypostlist;
 
 const AddPostButton = styled.div`
   position: fixed;
@@ -144,7 +125,7 @@ const AddPostButton = styled.div`
   bottom: 80px;
 
   padding: 15px;
-  background-color: transparent;
+  background-color: white;
   width: "100px";
   font-size: 2rem;
   font-weight: bold;
