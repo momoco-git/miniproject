@@ -46,5 +46,4 @@ const DetailContent = styled.div`
   margin: auto;
   box-shadow: 5px 5px 10px #999;
 `;
-export default Detail;
-
+export default Detail

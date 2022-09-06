@@ -8,10 +8,10 @@ const initialState = {
 }
 
 export const __getComment = createAsyncThunk(
-  "comment/GET_COMMENT",
+  "post/GET_COMMENT",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/comments");
+      const data = await axios.get("http://localhost:3001/comments"+"/"+payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

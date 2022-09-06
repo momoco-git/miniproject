@@ -84,11 +84,11 @@ const CommentList = ({ id, commentLike, content }) => {
         ) : (
           <>
             <Paragraph length="240px">{content}</Paragraph>
-            {commentLike ? (
+            {/* {commentLike ? (
               <CommentLike onClick={likeHandler}>♥️</CommentLike>
             ) : (
               <CommentLike onClick={likeHandler}>♡</CommentLike>
-            )}
+            )} */}
             <AllRounderButton
               length={"60px"}
               buttonName={"수정"}

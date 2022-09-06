@@ -23,11 +23,7 @@ export const __getPost = createAsyncThunk(
   "post/GET_Post",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/post", {
-        params: {
-          page: 10
-        }
-      });
+      const data = await axios.get("http://localhost:3001/post");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -126,7 +122,7 @@ const posts = createSlice({
     },
     [__updatePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.list = state.list.map((post) =>
+      state.list = state.list.map((p) =>
       post.id === action.payload.id ? { ...action.payload } : post
       );
     },

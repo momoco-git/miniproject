@@ -1,32 +1,18 @@
 {
   "post": [
     {
-      "id": 1,
+      "id": "3",
+      "title": "zxczxc",
+      "body": "32zxczxc1",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": true
+    },
+    {
+      "id": "4",
       "title": "애국가1절'",
-      "body": "동해물과 백두산이 마르고 닳도록",
+      "body": "ㅁㄴㅇㅁㄴㅇ동해물과 백두산이 마르고 닳도록",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
-    },
-    {
-      "id": 2,
-      "title": "애국가2절",
-      "body": "남산위에 저 소나무 철갑을 두른듯",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": true
-    },
-    {
-      "id": 3,
-      "title": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": true
-    },
-    {
-      "id": 4,
-      "title": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": true
     },
     {
       "id": 5,
@@ -87,40 +73,52 @@
   ],
   "comments": [
     {
-      "postId": "1",
-      "content": "asdasdasdasdasd",
-      "commentLike": false,
+      "postId": 1,
+      "content": "2222222222222222",
+      "commentLike": true,
       "id": 1
     },
     {
       "postId": "1",
-      "content": "asdasdasdasdasd",
+      "content": "ㄴㄴㅊ",
       "commentLike": false,
       "id": 2
     },
     {
       "postId": "1",
-      "content": "zxczc",
+      "content": "123123123",
       "commentLike": false,
       "id": 3
     },
     {
       "postId": "1",
-      "content": "dfaf",
+      "content": "ㅊㅁㄴㄴㅁ",
       "commentLike": false,
       "id": 4
     },
     {
       "postId": "1",
-      "content": "asdadsda",
+      "content": "ㅊㅋㅍㅋㅌㅋㅍㅌㅋㅌ ㅍㅋㅌㅍ",
       "commentLike": false,
       "id": 5
     },
     {
       "postId": "1",
-      "content": "sssssssssssssssssssssss",
+      "content": "ㅎ추츄ㅜ",
       "commentLike": false,
       "id": 6
+    },
+    {
+      "postId": "3",
+      "content": "fasfsaf",
+      "commentLike": false,
+      "id": 7
+    },
+    {
+      "postId": "3",
+      "content": "adssadafasf",
+      "commentLike": false,
+      "id": 8
     }
   ]
 }

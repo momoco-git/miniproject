@@ -31,7 +31,7 @@ const CommentForm = () => {
           <CommentFormInput
             length="400px"
             type="text"
-            placeholder="Comment"
+            placeholder="댓글"
             value={content || ""}
             onChange={onChangeContentHandler}
           />
