@@ -56,6 +56,7 @@ const List = () => {
     } else {
       setLoadingItem(true);
     }
+    console.log(items);
   }, [inView, loading]);
 
   return (
