@@ -69,7 +69,7 @@ function Login() {
                   mg="auto"
                   _onClick={() => {
                     checklogin();
-
+                    console.log(window.location.origin());
                     checkForm && getlogin();
                   }}
                 >
