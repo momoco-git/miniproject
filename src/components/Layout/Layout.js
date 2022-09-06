@@ -7,8 +7,8 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const Wrap = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   max-height: 100%;
   background-color: #f7ecde;
 `;

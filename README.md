@@ -37,7 +37,7 @@
 | 박세린 | BE    | https://github.com/Serapple   |
 | 손지아 | BE    | https://githup.com/JJIaa      |
 | 전선향 | BE    | https://github.com/petal416   |
-| 이상혁 | FE    |                               |
+| 이상혁 | FE    | https://github.com/jejuski    |
 | 이태권 | FE    | https://github.com/momoco-git |
 
 - FE Github: [https://github.com/momoco-git/miniproject](https://github.com/momoco-git/miniproject)
