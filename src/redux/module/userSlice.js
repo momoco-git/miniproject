@@ -17,9 +17,12 @@ const UserInfo = createSlice({
   name: "POST",
   initialState: {
     userInfo: [],
-    is_login: false,
   },
-  reducers: {},
+  reducers: {
+    getUserInfo: (state, action) => {
+      state.userInfo = action.payload;
+    },
+  },
   extraReducers: {
     extraReducers: {
       [getLogin.fulfilled]: (state, { payload }) => {
@@ -29,5 +32,5 @@ const UserInfo = createSlice({
     },
   },
 });
-
+export const { getUserInfo } = UserInfo.actions;
 export default UserInfo.reducer;

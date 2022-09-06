@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button } from "../../elem/index";
-import useInput from "../../hooks/useInput";
+import useForm from "../../hooks/useInput";
 import { AccountAPI, PostList } from "../../apis/api";
 import AlertBar from "../alertbar/Alertbar";
 const AddPost = () => {
-  const [form, onChange, reset, setForm] = useInput(null);
-
-  const addpost = async () => {
-    if (form.title === null) {
+  const [form, onChange, reset, setForm] = useForm("");
+  const [checkForm, setcheckForm] = useState(false);
+  const checkpost = async () => {
+    if (form.title === undefined) {
       return window.alert("제목을 입력하세요");
-    } else if (form.content === null) {
+    } else if (form.content === undefined) {
       return window.alert("내용을 적어주세요");
-    } else if (form.url === null) {
+    } else if (form.url === undefined) {
       return window.alert("url을 입력해주세요");
     } else {
-      return PostList.getAddPost(form)
-        .then(() => {
-          window.alert("추가완료");
-        })
-        .catch(err => {
-          window.alert(String(err));
-        });
+      return setcheckForm(true);
     }
+  };
+  const addpost = async () => {
+    PostList.getAddPost(form)
+      .then(() => {
+        window.alert("추가완료");
+      })
+      .catch(err => {
+        window.alert(String(err));
+      });
   };
   return (
     <>
@@ -54,8 +57,8 @@ const AddPost = () => {
                 width="60%"
                 mg="20px auto 20px auto"
                 _onClick={() => {
-                  addpost();
-                  console.log(form);
+                  checkpost();
+                  checkForm && addpost();
                 }}
               >
                 추가하기
