@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Item from "../../components/Item/Item";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-
+import { useNavigate } from "react-router-dom";
 import { getItems } from "../../apis/api";
 import LoadingItem from "../../components/LoadingItem/LoadingItem";
 const List = () => {
