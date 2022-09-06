@@ -11,7 +11,7 @@ import {
   setRefreshToken,
   getAccessToken,
 } from "../../redux/Cookie";
-import useForm from "../../hooks/useInput";
+import useForm from "../../hooks/useForm";
 import AlertBar from "../alertbar/Alertbar";
 function Login() {
   const navigate = useNavigate();
@@ -35,9 +35,9 @@ function Login() {
     const res = await AccountAPI.getlogin(form).catch(err => {
       seterror(String(err));
     });
-    dispatch(getUserInfo(res.data));
-    setAccessToken(response.AccessToken);
-    setRefreshToken(response.RefreshToken);
+    // dispatch(getUserInfo(res.data));
+    // setAccessToken(response.AccessToken);
+    // setRefreshToken(response.RefreshToken);
     seterror("");
   };
 

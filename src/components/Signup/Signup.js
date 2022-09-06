@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button, Text } from "../../elem";
-import useForm from "../../hooks/useInput";
+import useForm from "../../hooks/useForm";
 import { AccountAPI, PostList } from "../../apis/api";
 import { useNavigate } from "react-router-dom";
 import { idCheck } from "../../regExp";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Flex, Input, Button } from "../../elem/index";
-import useForm from "../../hooks/useInput";
+import useForm from "../../hooks/useForm";
 import { AccountAPI, PostList } from "../../apis/api";
 import AlertBar from "../alertbar/Alertbar";
 const AddPost = () => {
