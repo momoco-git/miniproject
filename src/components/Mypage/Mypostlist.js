@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Item from "../../components/Item/Item";
+import Item from "../Item/Item";
 import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import { getItems } from "../../apis/api";
-import LoadingItem from "../../components/LoadingItem/LoadingItem";
-const List = () => {
+import LoadingItem from "../LoadingItem/LoadingItem";
+const Mypostlist = () => {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -117,7 +117,7 @@ const EndMessage = styled.h1`
   margin: 100px auto;
 `;
 
-export default List;
+export default Mypostlist;
 
 const AddPostButton = styled.div`
   position: fixed;
