@@ -30,11 +30,12 @@ function Signup() {
     const res = AccountAPI.getSignInAccount(form)
       .then(() => {
         window.alert("가입완료!");
-        navigate("/");
+        navigate("/login");
       })
       .catch(err => {
         seterror(String(err));
       });
+    console.log(res);
   };
   return (
     <>
