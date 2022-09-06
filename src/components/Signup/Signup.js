@@ -20,7 +20,7 @@ function Signup() {
       return seterror("닉네임을 입력해주세요");
     } else if (form.password === undefined) {
       return seterror("비밀번호를 입력해주세요");
-    } else if (form.password !== form.passwordCheck) {
+    } else if (form.password !== form.passwordConfirm) {
       return seterror("비밀번호가 일치하지 않습니다.");
     } else {
       return setcheckForm(true);
