@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import logo from "./testgif.gif";
+// import logo from "./testgif.gif";
 import { idCheck } from "../../regExp";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ function Login() {
   return (
     <Screen>
       {errortext && <AlertBar errortext={errortext} wd="50%" mg="auto" />}
-      <Wrap logo={logo}>
+      <Wrap>
         <Flex center="center">
           <Logincantainer>
             <FormBox>

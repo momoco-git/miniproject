@@ -4,18 +4,13 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useInput from "../hooks/useInput";
 import { __deleteComment, __updateComment } from "../redux/module/commentSlice";
-import Button from "../elem/Button";
-const Comment = ({ username, content, commentLike, id }) => {
+import AllRounderButton from "../elem/AllRounderButton";
+const Comment = ({ content, commentLike, id }) => {
   const [formHelper, setFormHelper] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [updateUsername, onChangeUsernameHandler, setUpdateUsernme] =
-    useInput();
   const [updateComment, onChangeCommentHandler, setUpdateComment] = useInput();
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  useEffect(() => {
-    setUpdateUsernme(username);
-  }, [username, setUpdateUsernme]);
 
   useEffect(() => {
     setUpdateComment(content);
@@ -26,14 +21,12 @@ const Comment = ({ username, content, commentLike, id }) => {
       commentLike: !commentLike,
     };
     dispatch(__updateComment(toggleLike));
-    if(!commentLike)alert("liked Comment!")
+    if(!commentLike)alert("좋아요!")
   };
   const updateHandler = () => {
-    if (!updateUsername) {return setFormHelper("You Must Enter Username to Proceed")}
-    if (!updateComment) {return setFormHelper("You Must Enter Comment to Proceed")}
+    if (!updateComment) {return setFormHelper("댓글을 입력해주세요.")}
     const editComment = {
       id,
-      username: updateUsername,
       content: updateComment,
     };
     dispatch(__updateComment(editComment));
@@ -51,13 +44,6 @@ const Comment = ({ username, content, commentLike, id }) => {
         {toggle ? (
           <>
             <CommentFormInput
-              length="90px"
-              type="text"
-              placeholder="Username"
-              onChange={onChangeUsernameHandler}
-              defaultValue={username}
-            />
-            <CommentFormInput
               length="160px"
               type="text"
               placeholder="Comment"
@@ -65,37 +51,36 @@ const Comment = ({ username, content, commentLike, id }) => {
               defaultValue={content}
             />
             <Paragraph length="240px">{}</Paragraph>
-            <Button
+            <AllRounderButton
               length={"60px"}
-              buttonName={"cancel"}
+              buttonName={"취소"}
               onClick={() => {
                 setToggle(!toggle);
                 setFormHelper(false)
               }}
             />
-            <Button
+            <AllRounderButton
               length={"60px"}
-              buttonName={"submit"}
+              buttonName={"저장"}
               onClick={updateHandler}
             />
           </>
         ) : (
           <>
-            <Paragraph length="100px">{username}</Paragraph>
             <Paragraph length="240px">{content}</Paragraph>
             {commentLike ? (
               <CommentLike onClick={likeHandler}>♥️</CommentLike>
             ) : (
               <CommentLike onClick={likeHandler}>♡</CommentLike>
             )}
-            <Button
+            <AllRounderButton
               length={"60px"}
-              buttonName={"edit"}
+              buttonName={"수정"}
               onClick={() => {
                 setToggle(!toggle);
               }}
             />
-            <Button length={"60px"} buttonName={"delete"} onClick={deleteHandler}/>
+            <AllRounderButton length={"60px"} buttonName={"삭제"} onClick={deleteHandler}/>
           </>
         )}
       </CommentListBox>

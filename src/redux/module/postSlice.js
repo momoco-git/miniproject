@@ -20,7 +20,7 @@ const post = createSlice({
 
 //db에서 데이터 가져옴
 export const __getPost = createAsyncThunk(
-  "po/GET_Post",
+  "post/GET_Post",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get("http://localhost:3001/post", {
@@ -126,7 +126,7 @@ const posts = createSlice({
     },
     [__updatePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.list = state.list.map((mpostsic) =>
+      state.list = state.list.map((post) =>
       post.id === action.payload.id ? { ...action.payload } : post
       );
     },

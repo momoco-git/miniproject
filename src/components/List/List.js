@@ -23,7 +23,7 @@ const List = () => {
 
   const loadItems = useCallback(async () => {
     setLoading(true);
-    await getItems(page, 6).then(res => {
+    await getItems(page, 8).then(res => {
       setItems(prevState => [...prevState, res]);
     });
     setLoading(false);
@@ -31,6 +31,8 @@ const List = () => {
 
   const loadSkeleton = () => (
     <>
+      <LoadingItem />
+      <LoadingItem />
       <LoadingItem />
       <LoadingItem />
       <LoadingItem />
@@ -82,14 +84,20 @@ const List = () => {
 };
 
 const ItemDiv = styled.div`
-  background-color: white;
+  background-color: #11ffee00;  /* 완전 투명 */
   margin: 20px auto;
   width: 250px;
   height: 400px;
   box-shadow: 1px 1px 15px grey;
+  border-radius: 30px;
+  &:hover {
+    background-color: #764abc;
+    background-color: hsla(50, 33%, 25%, 0.75);
+    color: white;
+  }
 `;
 const ListDiv = styled.div`
-  width: 800px;
+  width: 1100px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -97,15 +105,16 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-<<<<<<< HEAD
+
   top: 20px;
-  margin: 800px 2px;
-=======
+  right: 20px;
+  bottom: 40px;
+
   top: 80px;
   margin: 5px 2px;
->>>>>>> b14a184aacc0931f01986ca23aceaf2889bfa0da
+
   padding: 15px;
-  background-color: transparent;
+  background-color: #11ffee00;  
   width: "100px";
   font-size: 20px;
   color: #764abc;
@@ -130,7 +139,7 @@ const AddPostButton = styled.div`
   bottom: 80px;
 
   padding: 15px;
-  background-color: white;
+  background-color: transparent;
   width: "100px";
   font-size: 2rem;
   color: #764abc;

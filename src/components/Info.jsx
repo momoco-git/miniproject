@@ -5,13 +5,14 @@ import { useDispatch } from "react-redux";
 import { __deletePost, __updatePost } from "../redux/module/postSlice";
 import Button from "../elem/Button";
 import useInput from "../hooks/useInput";
+import AllRounderButton from '../elem/AllRounderButton';
 
 
-const Info = ({ id, body, nick, coverUrl, like }) => {
+const Info = ({ id, body, title, coverUrl, like }) => {
   const [toggle, setToggle] = useState(false);
   const [formHelper, setFormHelper] = useState(false);
   const [updateBody, onChangeBodyHandler, setUpdateBody] = useInput();
-  const [updateNick, onChangeNickHandler, setUpdateNick] = useInput();
+  const [updateTitle, onChangeTitleHandler, setUpdateTitle] = useInput();
   const [updateCoverUrl, onChangeCoverUrlHandler, setUpdateCoverUrl] = useInput();
 
   useEffect(() => {
@@ -19,8 +20,8 @@ const Info = ({ id, body, nick, coverUrl, like }) => {
   }, [body, setUpdateBody]);
 
   useEffect(() => {
-    setUpdateNick(nick);
-  }, [nick, setUpdateNick]);
+    setUpdateTitle(title);
+  }, [title, setUpdateTitle]);
 
   useEffect(() => {
     setUpdateCoverUrl(coverUrl);
@@ -31,13 +32,13 @@ const Info = ({ id, body, nick, coverUrl, like }) => {
 
   const updateHandler = (e) => {
     e.preventDefault();
-    if(!updateBody){return setFormHelper("You Must Enter Artist to Proceed")}
-    if(!updateNick){return setFormHelper("You Must Enter Title to Proceed")}
-    if(!updateCoverUrl){return setFormHelper("You Must Enter Image URL to Proceed")}
+    if(!updateBody){return setFormHelper("제목을 입력하셍쇼.")}
+    if(!updateTitle){return setFormHelper("내용을 입력하세요.")}
+    if(!updateCoverUrl){return setFormHelper("URL을 입력하세요.")}
     const updatePost = {
       id,
       body: updateBody,
-      nick: updateNick,
+      title: updateTitle,
       coverUrl: updateCoverUrl,
     };
     dispatch(__updatePost(updatePost));
@@ -49,36 +50,36 @@ const Info = ({ id, body, nick, coverUrl, like }) => {
       like:!like
     }
     dispatch(__updatePost(updateLike))
-    if(!like)alert("liked!")
+    if(!like)alert("좋아요!")
   }
   
   const deleteHandler = (e) => {
     e.preventDefault()
     dispatch(__deletePost(id))
-    alert(nick+" has been successfully deleted!")
+    alert(title+" has been successfully deleted!")
     navigate(-1)
   }
 
   return (
     <StInfoContainer>
       <StAlbumSet>
-        <StAlbumImg src={coverUrl} />
+        
         <StArtist>{body}</StArtist>
-        <StTiltle>{nick}</StTiltle>
+        <StTiltle>{title}</StTiltle>
       </StAlbumSet>
       <StButtonSet>
         {like ? <StLike onClick={likeHandler}>♥️</StLike> : <StLike onClick={likeHandler}>♡</StLike>}
-        <Button
+        <AllRounderButton
           onClick={() => {
             navigate(-1);
           }}
-          buttonName={"Go Back"}
+          buttonName={"뒤로가기"}
         />
       </StButtonSet>
       <StButtonSet>
         {toggle ? (
           <EditDiv>
-            <h3>Edit</h3>
+            <h3>수정</h3>
             <FormHelper>{formHelper}</FormHelper>
             <InputBox
               length="300px"
@@ -89,10 +90,10 @@ const Info = ({ id, body, nick, coverUrl, like }) => {
             />
             <InputBox
               length="300px"
-              onChange={onChangeNickHandler}
+              onChange={onChangeTitleHandler}
               type="text"
-              placeholder="Nick"
-              defaultValue={nick}
+              placeholder="Title"
+              defaultValue={title}
             />
             <InputBox
               length="300px"
@@ -101,30 +102,30 @@ const Info = ({ id, body, nick, coverUrl, like }) => {
               placeholder="Cover URL"
               defaultValue={coverUrl}
             />
-            <Button onClick={updateHandler} buttonName={"Submit"} />
+            <Button onClick={updateHandler} buttonName={"저장"} />
           </EditDiv>
         ) : null}
         {toggle ? (
-          <Button
+          <AllRounderButton
             onClick={(e) => {
               e.preventDefault();
               setToggle(!toggle);
               setFormHelper("")
             }}
-            buttonName={"Close"}
+            buttonName={"닫기"}
           />
         ) : (
-          <Button
+          <AllRounderButton
             onClick={(e) => {
               e.preventDefault();
               setToggle(!toggle);
             }}
-            buttonName={"Edit"}
+            buttonName={"수정"}
           />
         )}
       </StButtonSet>
       <StButtonSet>
-        <Button buttonName={"Delete"} onClick={deleteHandler}/>
+        <AllRounderButton buttonName={"삭제"} onClick={deleteHandler}/>
       </StButtonSet>
     </StInfoContainer>
   );

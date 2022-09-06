@@ -8,7 +8,7 @@ import useInput from "../hooks/useInput";
 
 const Form = (props) => {
   const [body, onChangeBodyHandler] = useInput();
-  const [nick, onChangeNickHandler] = useInput();
+  const [title, onChangeTitleHandler] = useInput();
   const [CoverUrl, onChangeCoverUrlHandler] = useInput();
 
   const dispatch = useDispatch();
@@ -16,19 +16,19 @@ const Form = (props) => {
   const [formHelper, setFormHelper] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
-    if(!nick){return setFormHelper("You Must Enter Artist to Proceed")}
+    if(!title){return setFormHelper("You Must Enter Artist to Proceed")}
     if(!body){return setFormHelper("You Must Enter Title to Proceed")}
     if(!CoverUrl){return setFormHelper("You Must Enter Image URL to Proceed")}
     const addMusic = {
       id: nanoid(),
       body: body,
-      nick: nick,
+      title: title,
       coverUrl: CoverUrl,
       like: false
     };
     dispatch(__addPost(addMusic));
     setToggle(!toggle);
-    alert(nick+" by "+body+" has successfully Registered!")
+    alert(title+" by "+body+" has successfully Registered!")
   };
   return (
     <>
@@ -45,8 +45,8 @@ const Form = (props) => {
             <InputBox
               length="300px"
               type="text"
-              placeholder="Nick"
-              onChange={onChangeNickHandler}
+              placeholder="Title"
+              onChange={onChangeTitleHandler}
             />
             <InputBox
               length="500px"
