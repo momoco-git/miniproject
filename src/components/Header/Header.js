@@ -27,10 +27,18 @@ function Header() {
         APP 이름자리
       </Text>
       <Flex gap="4px" mg=" 0 10px 0 0">
-        {isToken && (
-          <Button outline={true} small={true}>
-            Profile
+        {isToken ? (
+          <Button
+            outline={true}
+            small={true}
+            _onClick={() => {
+              navigate("/mypage");
+            }}
+          >
+            MyPage
           </Button>
+        ) : (
+          ""
         )}
         {isToken ? (
           <Button

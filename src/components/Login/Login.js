@@ -34,6 +34,7 @@ function Login() {
   const getlogin = async () => {
     const res = await AccountAPI.getlogin(form).catch(err => {
       seterror(String(err));
+      console.log(res);
     });
     // dispatch(getUserInfo(res.data));
     // setAccessToken(response.AccessToken);
@@ -67,7 +68,6 @@ function Login() {
                   outline={true}
                   mg="auto"
                   _onClick={() => {
-                    console.log(form);
                     checklogin();
 
                     checkForm && getlogin();
