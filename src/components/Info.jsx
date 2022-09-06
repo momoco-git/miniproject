@@ -3,134 +3,135 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { __deletePost, __updatePost } from "../redux/module/postSlice";
-import Button from "../elem/Button";
 import useInput from "../hooks/useInput";
+import AllRounderButton from "../elem/AllRounderButton";
 
 
-const Info = ({ id, body, nick, coverUrl, like }) => {
-  const [toggle, setToggle] = useState(false);
-  const [formHelper, setFormHelper] = useState(false);
-  const [updateBody, onChangeBodyHandler, setUpdateBody] = useInput();
-  const [updateNick, onChangeNickHandler, setUpdateNick] = useInput();
-  const [updateCoverUrl, onChangeCoverUrlHandler, setUpdateCoverUrl] = useInput();
-
-  useEffect(() => {
-    setUpdateBody(body);
-  }, [body, setUpdateBody]);
-
-  useEffect(() => {
-    setUpdateNick(nick);
-  }, [nick, setUpdateNick]);
-
-  useEffect(() => {
-    setUpdateCoverUrl(coverUrl);
-  }, [coverUrl, setUpdateCoverUrl]);
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const updateHandler = (e) => {
-    e.preventDefault();
-    if(!updateBody){return setFormHelper("You Must Enter Artist to Proceed")}
-    if(!updateNick){return setFormHelper("You Must Enter Title to Proceed")}
-    if(!updateCoverUrl){return setFormHelper("You Must Enter Image URL to Proceed")}
-    const updatePost = {
-      id,
-      body: updateBody,
-      nick: updateNick,
-      coverUrl: updateCoverUrl,
-    };
-    dispatch(__updatePost(updatePost));
-    setToggle(!toggle);
-  };
-  const likeHandler = () => {
-    const updateLike = {
-      id,
-      like:!like
-    }
-    dispatch(__updatePost(updateLike))
-    if(!like)alert("liked!")
-  }
+const Info = ({ id, title, body, coverUrl, like }) => {
+    const [toggle, setToggle] = useState(false);
+    const [formHelper, setFormHelper] = useState(false);
+    const [updateBody, onChangeBodyHandler, setUpdateBody] = useInput();
+    const [updateTitle, onChangeTitleHandler, setUpdateTitle] = useInput();
+    const [updateCoverUrl, onChangeCoverUrlHandler, setUpdateCoverUrl] = useInput();
   
-  const deleteHandler = (e) => {
-    e.preventDefault()
-    dispatch(__deletePost(id))
-    alert(nick+" has been successfully deleted!")
-    navigate(-1)
-  }
-
-  return (
-    <StInfoContainer>
-      <StAlbumSet>
-        <StAlbumImg src={coverUrl} />
-        <StArtist>{body}</StArtist>
-        <StTiltle>{nick}</StTiltle>
-      </StAlbumSet>
-      <StButtonSet>
-        {like ? <StLike onClick={likeHandler}>♥️</StLike> : <StLike onClick={likeHandler}>♡</StLike>}
-        <Button
-          onClick={() => {
-            navigate(-1);
-          }}
-          buttonName={"Go Back"}
-        />
-      </StButtonSet>
-      <StButtonSet>
-        {toggle ? (
-          <EditDiv>
-            <h3>Edit</h3>
-            <FormHelper>{formHelper}</FormHelper>
-            <InputBox
-              length="300px"
-              onChange={onChangeBodyHandler}
-              type="text"
-              placeholder="Body"
-              defaultValue={body}
+    useEffect(() => {
+      setUpdateTitle(title);
+    }, [title, setUpdateTitle]);
+  
+    useEffect(() => {
+      setUpdateBody(body);
+    }, [body, setUpdateBody]);
+  
+    useEffect(() => {
+      setUpdateCoverUrl(coverUrl);
+    }, [coverUrl, setUpdateCoverUrl]);
+  
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+  
+    const updateHandler = (e) => {
+      e.preventDefault();
+      if(!updateTitle){return setFormHelper("제목을 입력하세요")}
+      if(!updateBody){return setFormHelper("내용을 입력하세요")}
+      if(!updateCoverUrl){return setFormHelper("URL을 입력하세요")}
+      const updatePost = {
+        id,
+        title: updateTitle,
+        body: updateBody,
+        coverUrl: updateCoverUrl,
+      };
+      dispatch(__updatePost(updatePost));
+      setToggle(!toggle);
+    };
+    const likeHandler = () => {
+      const updateLike = {
+        id,
+        like:!like
+      }
+      dispatch(__updatePost(updateLike))
+      if(!like)alert("좋아요!")
+    }
+    
+    const deleteHandler = (e) => {
+      e.preventDefault()
+      dispatch(__deletePost(id))
+      alert(title+" 삭제완료!")
+      navigate(-1)
+    }
+    console.log(title)
+    console.log(id)
+    return (
+        <StInfoContainer>
+          <StAlbumSet>
+            <StAlbumImg src={coverUrl} />
+            <Title>{title}</Title>
+            <Body>{body}</Body>
+          </StAlbumSet>
+          <StButtonSet>
+            {like ? <StLike onClick={likeHandler}>♥️</StLike> : <StLike onClick={likeHandler}>♡</StLike>}
+            <AllRounderButton
+              onClick={() => {
+                navigate(-1);
+              }}
+              buttonName={"돌아가기"}
             />
-            <InputBox
-              length="300px"
-              onChange={onChangeNickHandler}
-              type="text"
-              placeholder="Nick"
-              defaultValue={nick}
-            />
-            <InputBox
-              length="300px"
-              onChange={onChangeCoverUrlHandler}
-              type="text"
-              placeholder="Cover URL"
-              defaultValue={coverUrl}
-            />
-            <Button onClick={updateHandler} buttonName={"Submit"} />
-          </EditDiv>
-        ) : null}
-        {toggle ? (
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setToggle(!toggle);
-              setFormHelper("")
-            }}
-            buttonName={"Close"}
-          />
-        ) : (
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setToggle(!toggle);
-            }}
-            buttonName={"Edit"}
-          />
-        )}
-      </StButtonSet>
-      <StButtonSet>
-        <Button buttonName={"Delete"} onClick={deleteHandler}/>
-      </StButtonSet>
-    </StInfoContainer>
-  );
-};
-
-export default Info;
+          </StButtonSet>
+          <StButtonSet>
+            {toggle ? (
+              <EditDiv>
+                <h3>Edit</h3>
+                <FormHelper>{formHelper}</FormHelper>
+                <InputBox
+                  length="300px"
+                  onChange={onChangeTitleHandler}
+                  type="text"
+                  placeholder="제목"
+                  defaultValue={title}
+                />
+                <InputBox
+                  length="300px"
+                  onChange={onChangeBodyHandler}
+                  type="text"
+                  placeholder="내용"
+                  defaultValue={body}
+                />
+                <InputBox
+                  length="300px"
+                  onChange={onChangeCoverUrlHandler}
+                  type="text"
+                  placeholder="Cover URL"
+                  defaultValue={coverUrl}
+                />
+                <AllRounderButton onClick={updateHandler} buttonName={"저장"} />
+              </EditDiv>
+            ) : null}
+            {toggle ? (
+              <AllRounderButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  setToggle(!toggle);
+                  setFormHelper("")
+                }}
+                buttonName={"닫기"}
+              />
+            ) : (
+              <AllRounderButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  setToggle(!toggle);
+                }}
+                buttonName={"수정"}
+              />
+            )}
+          </StButtonSet>
+          <StButtonSet>
+            <AllRounderButton buttonName={"삭제"} onClick={deleteHandler}/>
+          </StButtonSet>
+        </StInfoContainer>
+      );
+    };
+    
+    export default Info;
 
 const StInfoContainer = styled.div`
   display: flex;
@@ -149,9 +150,10 @@ const StAlbumImg = styled.img`
   object-fit: cover;
 `;
 
-const StArtist = styled.h2``;
+const Body = styled.h2`
+text-align: center;`
 
-const StTiltle = styled.h2``;
+const Title = styled.h2``;
 
 const StButtonSet = styled.div`
   width: 450px;

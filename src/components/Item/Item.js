@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
-// import { Like, CoverImg, Nick, Body } from "../../elem/Post";
+// import { Like, CoverImg, Title, Body } from "../../elem/Post";
 
 const Item = React.forwardRef((post, ref) => {
-  const { id, body, nick, like, coverUrl } = post
+  const { id, body, title, like, coverUrl } = post
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,9 +16,11 @@ const Item = React.forwardRef((post, ref) => {
       id,
       like: !like
     }
+    window.location.reload();
     dispatch(__updatePost(updateLike))
-    if(!like)alert("liked!")
-  };
+    if(!like)alert("좋아요!") 
+    else alert("좋아요 취소!")
+  }; 
 
   return (
     <div>
@@ -33,7 +35,7 @@ const Item = React.forwardRef((post, ref) => {
         }}
         src={coverUrl}
       />
-      <Nick>{nick}</Nick>
+      <Title>{title}</Title>
       <Body>{body}</Body>
       <div ref={ref}/>
     </div>
@@ -46,11 +48,14 @@ const CoverImg = styled.img`
   margin: 20px auto 0;
   object-fit: cover;
 `;
-const Nick = styled.h2`
+const Title = styled.h2`
   font-size: 17px;
+  text-align: center;
+  font-weight: bold;
 `;
 const Body = styled.h1`
-  font-size: 25px;
+  font-size: 20px;
+  text-align: center;
 `;
 const Like = styled.div`
   position: absolute;
@@ -62,5 +67,9 @@ const Like = styled.div`
   border-radius: 50%;
   color: #fa1e2d;
   box-shadow: 3px 3px 10px black;
+   &:hover {
+    background-color: #764abc;
+    color: white;
+  }
 `;
 export default Item;

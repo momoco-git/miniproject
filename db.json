@@ -1,132 +1,124 @@
 {
   "post": [
     {
-      "id": 1,
-      "nick": "asd",
-      "body": "qwe",
+      "id": "3",
+      "title": "zxczxc",
+      "body": "32zxczxc1",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": true
     },
     {
-      "id": 2,
-      "nick": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": true
-    },
-    {
-      "id": 3,
-      "nick": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": false
-    },
-    {
-      "id": 4,
-      "nick": "123",
-      "body": "321",
+      "id": "4",
+      "title": "애국가1절'",
+      "body": "ㅁㄴㅇㅁㄴㅇ동해물과 백두산이 마르고 닳도록",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 5,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 6,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 7,
-      "nick": "asd",
+      "title": "asd",
       "body": "qwe",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": true
     },
     {
       "id": 8,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 9,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 10,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 11,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
       "id": 12,
-      "nick": "123",
+      "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": false
+      "like": true
     }
   ],
   "comments": [
     {
-      "postId": "6Z1-ZPVCa9yYNOdOhQcc4",
-      "username": "ㅁㄴㅇ",
-      "content": "ㅁㄴㅇ",
-      "commentLike": false,
-      "id": "DjK1fNI"
+      "postId": 1,
+      "content": "2222222222222222",
+      "commentLike": true,
+      "id": 1
     },
     {
-      "postId": "8RcOIAtw0tGNhwOWKnED3",
-      "username": "asd",
-      "content": "ads",
+      "postId": "1",
+      "content": "ㄴㄴㅊ",
       "commentLike": false,
-      "id": "RbUdWXt"
+      "id": 2
     },
     {
-      "postId": "8RcOIAtw0tGNhwOWKnED3",
-      "username": "asd",
-      "content": "ads",
+      "postId": "1",
+      "content": "123123123",
       "commentLike": false,
-      "id": "gIs9hug"
+      "id": 3
     },
     {
-      "postId": "8RcOIAtw0tGNhwOWKnED3",
-      "username": "fqqwf",
-      "content": "qwd",
+      "postId": "1",
+      "content": "ㅊㅁㄴㄴㅁ",
       "commentLike": false,
-      "id": "D8jfjX3"
+      "id": 4
     },
     {
-      "postId": "8RcOIAtw0tGNhwOWKnED3",
-      "username": "123e2",
-      "content": "qsw2e1",
+      "postId": "1",
+      "content": "ㅊㅋㅍㅋㅌㅋㅍㅌㅋㅌ ㅍㅋㅌㅍ",
       "commentLike": false,
-      "id": "sC_q5Ot"
+      "id": 5
     },
     {
-      "postId": "6Z1-ZPVCa9yYNOdOhQcc4",
-      "username": "이름",
-      "content": "댓글",
+      "postId": "1",
+      "content": "ㅎ추츄ㅜ",
       "commentLike": false,
-      "id": "IzMUbKK"
+      "id": 6
+    },
+    {
+      "postId": "3",
+      "content": "fasfsaf",
+      "commentLike": false,
+      "id": 7
+    },
+    {
+      "postId": "3",
+      "content": "adssadafasf",
+      "commentLike": false,
+      "id": 8
     }
   ]
 }
