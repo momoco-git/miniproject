@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
+// import { Like, CoverImg, Nick, Body } from "../../elem/Post";
 
 const Item = React.forwardRef((post, ref) => {
   const { id, body, nick, like, coverUrl } = post

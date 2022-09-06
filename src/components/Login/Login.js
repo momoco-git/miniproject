@@ -35,9 +35,9 @@ function Login() {
     const res = await AccountAPI.getlogin(form).catch(err => {
       seterror(String(err));
     });
-    // dispatch(getUserInfo(res.data));
-    // setAccessToken(response.data.AccessToken);
-    // setRefreshToken(response.data.RefreshToken);
+    dispatch(getUserInfo(res.data));
+    setAccessToken(response.AccessToken);
+    setRefreshToken(response.RefreshToken);
     seterror("");
   };
 

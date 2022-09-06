@@ -12,7 +12,7 @@
       "nick": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": false
+      "like": true
     },
     {
       "id": 3,
@@ -41,6 +41,92 @@
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
+    },
+    {
+      "id": 7,
+      "nick": "asd",
+      "body": "qwe",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": true
+    },
+    {
+      "id": 8,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 9,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 10,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 11,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    },
+    {
+      "id": 12,
+      "nick": "123",
+      "body": "321",
+      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "like": false
+    }
+  ],
+  "comments": [
+    {
+      "postId": "6Z1-ZPVCa9yYNOdOhQcc4",
+      "username": "ㅁㄴㅇ",
+      "content": "ㅁㄴㅇ",
+      "commentLike": false,
+      "id": "DjK1fNI"
+    },
+    {
+      "postId": "8RcOIAtw0tGNhwOWKnED3",
+      "username": "asd",
+      "content": "ads",
+      "commentLike": false,
+      "id": "RbUdWXt"
+    },
+    {
+      "postId": "8RcOIAtw0tGNhwOWKnED3",
+      "username": "asd",
+      "content": "ads",
+      "commentLike": false,
+      "id": "gIs9hug"
+    },
+    {
+      "postId": "8RcOIAtw0tGNhwOWKnED3",
+      "username": "fqqwf",
+      "content": "qwd",
+      "commentLike": false,
+      "id": "D8jfjX3"
+    },
+    {
+      "postId": "8RcOIAtw0tGNhwOWKnED3",
+      "username": "123e2",
+      "content": "qsw2e1",
+      "commentLike": false,
+      "id": "sC_q5Ot"
+    },
+    {
+      "postId": "6Z1-ZPVCa9yYNOdOhQcc4",
+      "username": "이름",
+      "content": "댓글",
+      "commentLike": false,
+      "id": "IzMUbKK"
     }
   ]
 }
