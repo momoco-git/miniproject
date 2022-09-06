@@ -64,7 +64,7 @@ function Signup() {
                 ></Input>
                 <Input
                   placeholder="비밀번호를 한번더 입력하세요"
-                  name="passwordCheck"
+                  name="passwordConfirm"
                   _onChange={onChange}
                   type="password"
                 ></Input>
