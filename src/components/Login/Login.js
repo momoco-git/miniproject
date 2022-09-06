@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-<<<<<<< HEAD
-// import logo from "./testgif.gif";
-=======
 import { useDispatch } from "react-redux";
->>>>>>> df7a64daa66c1e9f4dfae2ab6a1951f9e80ee51c
 import { idCheck } from "../../regExp";
 import { Flex, Input, Button } from "../../elem";
 import { useNavigate } from "react-router-dom";
