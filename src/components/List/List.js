@@ -106,20 +106,10 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-<<<<<<< HEAD
-
-  top: 20px;
-  right: 20px;
-  bottom: 40px;
-
-  top: 80px;
+  top: 825px;
   margin: 5px 2px;
-=======
-  top: 100px;
->>>>>>> df7a64daa66c1e9f4dfae2ab6a1951f9e80ee51c
-
   padding: 15px;
-  background-color: #11ffee00;  
+  background-color: transparent;
   width: "100px";
   font-size: 20px;
   color: #764abc;

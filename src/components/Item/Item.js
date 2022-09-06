@@ -21,6 +21,7 @@ const Item = React.forwardRef((post, ref) => {
     if(!like)alert("좋아요!") 
     else alert("좋아요 취소!")
   }; 
+  console.log(coverUrl)
 
   return (
     <div>

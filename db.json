@@ -1,38 +1,24 @@
 {
   "post": [
     {
-      "id": "3",
-      "title": "zxczxc",
-      "body": "32zxczxc1",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "id": "4",
+      "title": "애국가1절",
+      "body": "동해물과 백두산이 마르고 닳도록",
+      "coverUrl": "https://www.youtube.com/watch?v=4aCynanIPUg",
       "like": true
     },
     {
-      "id": "4",
-      "title": "애국가1절'",
-      "body": "ㅁㄴㅇㅁㄴㅇ동해물과 백두산이 마르고 닳도록",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "id": "6",
+      "title": "애국가1절",
+      "body": "동해물과 백두산이 마르고 닳도록",
+      "coverUrl": "https://img.youtube.com/vi/GapXQj2ttdY/mqdefault.jpg",
       "like": false
     },
     {
-      "id": 5,
-      "title": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": false
-    },
-    {
-      "id": 6,
-      "title": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": false
-    },
-    {
-      "id": 7,
-      "title": "asd",
-      "body": "qwe",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
+      "id": "7",
+      "title": "스파르타",
+      "body": "코딩클럽 유튜브",
+      "coverUrl": "https://www.youtube.com/watch?v=6BRNI7FGkH0",
       "like": true
     },
     {
@@ -92,12 +78,6 @@
     },
     {
       "postId": "1",
-      "content": "ㅊㅁㄴㄴㅁ",
-      "commentLike": false,
-      "id": 4
-    },
-    {
-      "postId": "1",
       "content": "ㅊㅋㅍㅋㅌㅋㅍㅌㅋㅌ ㅍㅋㅌㅍ",
       "commentLike": false,
       "id": 5
@@ -119,6 +99,12 @@
       "content": "adssadafasf",
       "commentLike": false,
       "id": 8
+    },
+    {
+      "postId": "6",
+      "content": "asdasd",
+      "commentLike": false,
+      "id": 9
     }
   ]
 }

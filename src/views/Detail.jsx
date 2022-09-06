@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { __getPost } from "../redux/module/postSlice";
+import Video from "../components/Video";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const Detail = () => {
     <DetailPage>
       <Header />
       <DetailContent>
+        <Video/>
         <Info {...getPost} />
       </DetailContent>
       <DetailContent>
