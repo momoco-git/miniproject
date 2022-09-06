@@ -97,8 +97,8 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-  top: 20px;
-  margin: 800px 2px;
+  top: 100px;
+  
   padding: 15px;
   background-color: transparent;
   width: "100px";
@@ -128,6 +128,7 @@ const AddPostButton = styled.div`
   background-color: white;
   width: "100px";
   font-size: 2rem;
+  font-weight: bold;
   color: #764abc;
   cursor: pointer;
   border-radius: 100px;
