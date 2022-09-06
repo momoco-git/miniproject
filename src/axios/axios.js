@@ -11,7 +11,7 @@ export const api = axios.create({
   },
   // 토큰 추가하기
   withCredentials: true,
-  timeout: 3000,
+  
 });
 
 api.interceptors.request.use(refresh, refreshErrorHandle);
