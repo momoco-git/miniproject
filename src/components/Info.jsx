@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { __deletePost, __updatePost } from "../redux/module/postSlice";
 import useInput from "../hooks/useInput";
 import AllRounderButton from "../elem/AllRounderButton";
+import ReactPlayer from 'react-player';
 
 
 const Info = ({ id, title, body, coverUrl, like }) => {
@@ -40,6 +41,7 @@ const Info = ({ id, title, body, coverUrl, like }) => {
         body: updateBody,
         coverUrl: updateCoverUrl,
       };
+      window.location.reload();
       dispatch(__updatePost(updatePost));
       setToggle(!toggle);
     };
@@ -58,12 +60,19 @@ const Info = ({ id, title, body, coverUrl, like }) => {
       alert(title+" 삭제완료!")
       navigate(-1)
     }
-    console.log(title)
-    console.log(id)
     return (
         <StInfoContainer>
           <StAlbumSet>
-            <StAlbumImg src={coverUrl} />
+          <PlayerWrapper>
+            <ReactPlayer 
+              className="react-player" 
+              url={coverUrl} 
+              width="100%" 
+              height="100%" 
+              muted={true} //chrome정책으로 인해 자동 재생을 위해 mute 옵션을 true로 해주었다.
+              playing={true} 
+              loop={true} />
+          </PlayerWrapper>
             <Title>{title}</Title>
             <Body>{body}</Body>
           </StAlbumSet>
@@ -79,7 +88,7 @@ const Info = ({ id, title, body, coverUrl, like }) => {
           <StButtonSet>
             {toggle ? (
               <EditDiv>
-                <h3>Edit</h3>
+                <h3>수정하기</h3>
                 <FormHelper>{formHelper}</FormHelper>
                 <InputBox
                   length="300px"
@@ -185,3 +194,12 @@ margin-top: 10px;
 font-size: 20px;
 color: #fa1e2d;
 `
+const PlayerWrapper = styled.div`
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */;
+    .react-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  `;
