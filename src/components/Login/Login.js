@@ -11,7 +11,8 @@ import { getUserInfo } from "../../redux/module/userSlice";
 import {
   setAccessToken,
   setRefreshToken,
-  getAccessToken,
+  setCookieName,
+  setCookieNick,
 } from "../../redux/Cookie";
 import useForm from "../../hooks/useForm";
 import AlertBar from "../alertbar/Alertbar";
@@ -34,16 +35,27 @@ function Login() {
   };
 
   const getlogin = async () => {
-    AccountAPI.getlogin(form)
-      .then(response => console.log(response))
-      .catch(err => {
-        seterror(String(err));
-      });
-
-    // dispatch(getUserInfo(res.data));
-    // setAccessToken(response.AccessToken);
-    // setRefreshToken(response.RefreshToken);
-    seterror("");
+    try {
+      const res = await AccountAPI.getlogin(form);
+      console.log(res);
+      if (res.data.success) {
+        const { username, nickname, accessToken, refreshToken } =
+          res?.data.data;
+        dispatch(getUserInfo({ username, nickname }));
+        setAccessToken(accessToken);
+        setRefreshToken(refreshToken);
+        setCookieName(username);
+        setCookieNick(nickname);
+        window.alert("로그인!");
+        navigate("/");
+      } else {
+        let errormessage = res.data.error.message;
+        return seterror(errormessage);
+      }
+      seterror("");
+    } catch (e) {
+      seterror(String(e));
+    }
   };
 
   return (

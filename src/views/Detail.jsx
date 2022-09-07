@@ -13,10 +13,12 @@ import Video from "../components/Video";
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { isLoading, error, list } = useSelector((state) => state.posts);
-  const getPost = list.find((post) => post.id === id);
+
+  const { isLoading, error, list } = useSelector(state => state.posts);
+
+  const getPost = list.find(post => post.id === id);
   useEffect(() => {
-    dispatch(__getPost());
+    dispatch(__getPost(id));
   }, [dispatch]);
   if (isLoading) {
     return <div>Loading . . .</div>;
@@ -28,13 +30,13 @@ const Detail = () => {
     <DetailPage>
       <Header />
       <DetailComment>
-        <Video/>
-        <Info {...getPost} />
+        <Video id={id} />
+        <Info postid={id} />
       </DetailComment>
+      <CommentForm id={id} />
       <DetailComment>
         <CommentList id={id} />
       </DetailComment>
-      <CommentForm />
     </DetailPage>
   );
 };
@@ -44,8 +46,8 @@ const DetailPage = styled.div`
   margin: auto;
 `;
 const DetailComment = styled.div`
-  width: 450px;
+  width: 60%;
   margin: auto;
   box-shadow: 5px 5px 10px #999;
 `;
-export default Detail
+export default Detail;

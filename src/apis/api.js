@@ -5,14 +5,19 @@ export const AccountAPI = {
   getlogin: data => api.post("/api/member/login", data),
   getOneAccount: accountId => api.get(`/${accountId}`),
   getSignInAccount: form => api.post("/api/member/signup", form),
+  getlogout: () => api.get("/api/auth/member/logout"),
 };
 
 export const PostList = {
   getPostList: () => api.get("/api/post"),
-  getOnePost: postId => api.get(`/api/post/${postId}`),
+  getMyPost: username => api.get(`/api/post?username=${username}`),
   getAddPost: form => api.post("/api/auth/post", form),
-  getDeletePost: postId => api.delete(`/api/auth/post/{id}/${postId}`),
+  getDeletePost: postId => api.delete(`/api/auth/post/${postId}`),
   getPatchPost: post => api.patch(`/api/auth/post/{id}/${post.id}`, post),
+};
+
+export const CommentAPI = {
+  post: data => api.post("/api/auth/comment", data),
 };
 
 const URL = "http://54.177.177.138:8080/api/post";

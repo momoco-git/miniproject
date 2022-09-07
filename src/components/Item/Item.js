@@ -3,70 +3,66 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 
 const Item = React.forwardRef((post, ref) => {
-  const { id, body, title, like, coverUrl } = post
+  const { id, content, title, like, youtubeUrl, youtubeThumbnailUrl } = post;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isHovering, setIsHovering] = useState(0);
-  const likeHandler = (e) => {
-    e.preventDefault()
+  const [isHovering, setIsHovering] = useState(false);
+  const likeHandler = e => {
+    e.preventDefault();
     const updateLike = {
       id,
-      like: !like
-    }
+      like: !like,
+    };
     window.location.reload();
-    dispatch(__updatePost(updateLike))
-    if(!like)alert("좋아요!") 
-    else alert("좋아요 취소!")
-  }; 
-  
-
+    dispatch(__updatePost(updateLike));
+    if (!like) alert("좋아요!");
+    else alert("좋아요 취소!");
+  };
 
   return (
     <div>
-      {like ? (
-        <Like onClick={likeHandler}>♥️</Like>
-      ) : (
-        <Like onClick={likeHandler}>♡</Like>
-      )}
-        <div onClick={() => {
-         navigate("/detail/" + id);
-       }}
-       src={coverUrl}>
+      <div
+        onClick={() => {
+          navigate("/detail/" + id);
+        }}
+        // src={youtubeThumbnailUrl}
+      >
         <PlayerWrapper
-              onMouseOver={() => setIsHovering(1)}
-              onMouseOut={() => setIsHovering(0)}
-            >
-              <ReactPlayer 
-               className="react-player" 
-               url={coverUrl} 
-               width="100%" 
-               height="100%" 
-               muted={true} 
-               playing={true} 
-               loop={true}
-              //  light mode={true}
-              />
-                {isHovering ? (
-                  <ReactPlayer 
-                  className="react-player" 
-                  url={coverUrl} 
-                  width="100%" 
-                  height="100%" 
-                  muted={true} 
-                  playing={true} 
-                  loop={true}
-                  pip={false} />
-                  ) : (
-                  ""
-                )}
-          </PlayerWrapper>
-      <Title>{title}</Title>
-      <Body>{body}</Body>
+          onMouseOver={() => setIsHovering(true)}
+          onMouseOut={() => setIsHovering(false)}
+        >
+          {/* <ReactPlayer
+            className="react-player"
+            url={youtubeUrl}
+            width="100%"
+            height="100%"
+            muted={true}
+            playing={true}
+            loop={true}
+            //  light mode={true}
+          /> */}
+          {isHovering ? (
+            <ReactPlayer
+              className="react-player"
+              url={youtubeUrl}
+              width="100%"
+              height="100%"
+              muted={true}
+              playing={true}
+              loop={true}
+              pip={false}
+            />
+          ) : (
+            <YoutubeThumbnail src={youtubeThumbnailUrl} />
+          )}
+        </PlayerWrapper>
+        <Title>{title}</Title>
+        <Body>{content}</Body>
       </div>
-      <div ref={ref}/>
+      <div ref={ref} />
     </div>
   );
 });
@@ -96,18 +92,25 @@ const Like = styled.div`
   border-radius: 50%;
   color: #fa1e2d;
   box-shadow: 3px 3px 10px black;
-   &:hover {
+  &:hover {
     background-color: #764abc;
     color: white;
   }
 `;
 const PlayerWrapper = styled.div`
-    position: relative;
-    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */;
-    .react-player {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  `;
+  position: relative;
+  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */;
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
+const YoutubeThumbnail = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 export default Item;
