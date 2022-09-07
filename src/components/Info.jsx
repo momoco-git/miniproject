@@ -14,7 +14,7 @@ const Info = ({ id, title, body, coverUrl, like }) => {
     const [updateBody, onChangeBodyHandler, setUpdateBody] = useInput();
     const [updateTitle, onChangeTitleHandler, setUpdateTitle] = useInput();
     const [updateCoverUrl, onChangeCoverUrlHandler, setUpdateCoverUrl] = useInput();
-  
+    // const URL = "https://www.youtube.com/watch?v=" + "{...coverUrl}"
     useEffect(() => {
       setUpdateTitle(title);
     }, [title, setUpdateTitle]);
@@ -69,9 +69,12 @@ const Info = ({ id, title, body, coverUrl, like }) => {
               url={coverUrl} 
               width="100%" 
               height="100%" 
-              muted={true} //chrome정책으로 인해 자동 재생을 위해 mute 옵션을 true로 해주었다.
+              muted={false}
               playing={true} 
-              loop={true} />
+              loop={true} 
+              controls={true}
+              volume={true}               
+              playbackRate={true}/>
           </PlayerWrapper>
             <Title>{title}</Title>
             <Body>{body}</Body>

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import {__getComment, __deleteComment, __updateComment } from '../redux/module/commentSlice';
 import AllRounderButton from '../elem/AllRounderButton';
 
-const CommentList = ({ id, commentLike, content }) => {
+const CommentList = ({ id, commentLike, comment }) => {
   const [toggle, setToggle] = useState(false);
   const [formHelper, setFormHelper] = useState(false);
   const dispatch = useDispatch();
@@ -16,23 +16,23 @@ const CommentList = ({ id, commentLike, content }) => {
       __getComment()
     )
   },[dispatch])
-  const contentInput = useRef(null);
+  const commentInput = useRef(null);
   
   const navigate = useNavigate();
   
   const onCommentHandler = (e) => {
     e.preventDefault();
-    if (!contentInput.current.value) {
+    if (!commentInput.current.value) {
       return setFormHelper('내용을 입력해주세요.');
     }
-    console.log(formHelper);
+    console.log(CommentList);
     dispatch(
       __updateComment({
         id,
-        content: contentInput.current.value,
+        comment: commentInput.current.value,
       })
     );
-    contentInput.current.value = "";
+    commentInput.current.value = "";
 
     setFormHelper("")
     setToggle(false)
@@ -62,9 +62,9 @@ const CommentList = ({ id, commentLike, content }) => {
             <CommentFormInput
               length="160px"
               type="text"
-              placeholder="Comment"
-              defaultValue={content}
-              ref={contentInput}
+              placeholder="댓그"
+              defaultValue={comment}
+              ref={commentInput}
             />
             <Paragraph length="240px">{}</Paragraph>
             <AllRounderButton
@@ -83,7 +83,7 @@ const CommentList = ({ id, commentLike, content }) => {
           </>
         ) : (
           <>
-            <Paragraph length="240px">{content}</Paragraph>
+            <Paragraph length="240px">{comment}</Paragraph>
             {/* {commentLike ? (
               <CommentLike onClick={likeHandler}>♥️</CommentLike>
             ) : (
@@ -109,7 +109,7 @@ export default CommentList;
 const CommentListBox = styled.div`
   height: 50px;
   display: flex;
-  justify-content: space-around;
+  /* justify-comment: space-around; */
   align-items: center;
   margin: auto;
 `;

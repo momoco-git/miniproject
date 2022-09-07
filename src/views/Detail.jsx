@@ -27,13 +27,13 @@ const Detail = () => {
   return (
     <DetailPage>
       <Header />
-      <DetailContent>
+      <DetailComment>
         <Video/>
         <Info {...getPost} />
-      </DetailContent>
-      <DetailContent>
+      </DetailComment>
+      <DetailComment>
         <CommentList id={id} />
-      </DetailContent>
+      </DetailComment>
       <CommentForm />
     </DetailPage>
   );
@@ -43,7 +43,7 @@ const DetailPage = styled.div`
   min-width: 800px;
   margin: auto;
 `;
-const DetailContent = styled.div`
+const DetailComment = styled.div`
   width: 450px;
   margin: auto;
   box-shadow: 5px 5px 10px #999;

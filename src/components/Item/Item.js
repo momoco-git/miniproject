@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
-// import { Like, CoverImg, Title, Body } from "../../elem/Post";
+import ReactPlayer from 'react-player';
 
 const Item = React.forwardRef((post, ref) => {
   const { id, body, title, like, coverUrl } = post
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [isHovering, setIsHovering] = useState(0);
   const likeHandler = (e) => {
     e.preventDefault()
     const updateLike = {
@@ -21,7 +21,8 @@ const Item = React.forwardRef((post, ref) => {
     if(!like)alert("좋아요!") 
     else alert("좋아요 취소!")
   }; 
-  console.log(coverUrl)
+  
+
 
   return (
     <div>
@@ -30,14 +31,41 @@ const Item = React.forwardRef((post, ref) => {
       ) : (
         <Like onClick={likeHandler}>♡</Like>
       )}
-      <CoverImg
-        onClick={() => {
-          navigate("/detail/" + id);
-        }}
-        src={coverUrl}
-      />
+        <div onClick={() => {
+         navigate("/detail/" + id);
+       }}
+       src={coverUrl}>
+        <PlayerWrapper
+              onMouseOver={() => setIsHovering(1)}
+              onMouseOut={() => setIsHovering(0)}
+            >
+              <ReactPlayer 
+               className="react-player" 
+               url={coverUrl} 
+               width="100%" 
+               height="100%" 
+               muted={true} 
+               playing={true} 
+               loop={true}
+              //  light mode={true}
+              />
+                {isHovering ? (
+                  <ReactPlayer 
+                  className="react-player" 
+                  url={coverUrl} 
+                  width="100%" 
+                  height="100%" 
+                  muted={true} 
+                  playing={true} 
+                  loop={true}
+                  pip={false} />
+                  ) : (
+                  ""
+                )}
+          </PlayerWrapper>
       <Title>{title}</Title>
       <Body>{body}</Body>
+      </div>
       <div ref={ref}/>
     </div>
   );
@@ -73,4 +101,13 @@ const Like = styled.div`
     color: white;
   }
 `;
+const PlayerWrapper = styled.div`
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */;
+    .react-player {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  `;
 export default Item;
