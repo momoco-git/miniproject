@@ -32,10 +32,12 @@ function Login() {
   };
 
   const getlogin = async () => {
-    const res = await AccountAPI.getlogin(form).catch(err => {
-      seterror(String(err));
-    });
-    console.log(res.headers);
+    AccountAPI.getlogin(form)
+      .then(response => console.log(response))
+      .catch(err => {
+        seterror(String(err));
+      });
+
     // dispatch(getUserInfo(res.data));
     // setAccessToken(response.AccessToken);
     // setRefreshToken(response.RefreshToken);

@@ -15,7 +15,7 @@ export const PostList = {
   getPatchPost: post => api.patch(`/api/auth/post/{id}/${post.id}`, post),
 };
 
-const URL = "http://localhost:3001/post";
+const URL = "http://54.177.177.138:8080/api/post";
 const instance = axios.create({ baseURL: URL });
 export const getItems = async (page, limit) => {
   const response = await instance.get(`/?_page=${page}&_limit=${limit}`);

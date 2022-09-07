@@ -4,17 +4,17 @@ import styled from "styled-components";
 const LoadingItem = () => {
   return (
     <Div>
-        <Img>
+      <Img>
+        <Shimmer />
+      </Img>
+      <Wrap>
+        <Text>
           <Shimmer />
-        </Img>
-        <Wrap>
-          <Text>
-            <Shimmer />
-          </Text>
-          <Text>
-            <Shimmer />
-          </Text>
-        </Wrap>
+        </Text>
+        <Text>
+          <Shimmer />
+        </Text>
+      </Wrap>
     </Div>
   );
 };

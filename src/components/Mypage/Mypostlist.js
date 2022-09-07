@@ -4,11 +4,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import { getItems } from "../../apis/api";
-import LoadingItem from "../LoadingItem/LoadingItem";
+import { __getPost } from "../../redux/module/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingItem from "../../components/LoadingItem/LoadingItem";
 const Mypostlist = () => {
+  const dispatch = useDispatch();
+  const postlist = useSelector(state => state.post.list);
+  const totalcount = postlist.length;
+  const maxpage = Math.ceil(totalcount / 6);
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [loadingItem, setLoadingItem] = useState(true);
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView({
@@ -32,11 +38,6 @@ const Mypostlist = () => {
   const loadSkeleton = () => (
     <>
       <LoadingItem />
-      <LoadingItem />
-      <LoadingItem />
-      <LoadingItem />
-      <LoadingItem />
-      <LoadingItem />
     </>
   );
 
@@ -47,7 +48,7 @@ const Mypostlist = () => {
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView && !loading) {
+    if (inView && !loading && page < maxpage) {
       setTimeout(() => {
         setPage(prevState => prevState + 1);
       }, 800);
@@ -68,7 +69,11 @@ const Mypostlist = () => {
             </ItemDiv>
           ))
         )}
-      {loadingItem ? loadSkeleton() : <EndMessage>end of the page</EndMessage>}
+      {page < maxpage ? (
+        loadSkeleton()
+      ) : (
+        <EndMessage>end of the page</EndMessage>
+      )}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
       <AddPostButton
         onClick={() => {
