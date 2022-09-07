@@ -15,7 +15,9 @@ function Signup() {
     if (form.username === undefined) {
       return seterror("아이디를 입력해주세요");
     } else if (idCheck(form.username) === false) {
-      return seterror("아이디에 특무문자는 들어갈 수 없습니다");
+      return seterror(
+        "아이디에 특무문자는 들어갈 수 없고 4자리 이상이여야합니다"
+      );
     } else if (form.nickname === undefined) {
       return seterror("닉네임을 입력해주세요");
     } else if (form.password === undefined) {
@@ -28,13 +30,17 @@ function Signup() {
   };
   const postAccount = async () => {
     const res = AccountAPI.getSignInAccount(form)
-      .then(() => {
+      .then(response => {
+        if (response.data === "중복된 아이디입니다.") {
+          seterror(response.data);
+        }
         window.alert("가입완료!");
-        navigate("/");
+        navigate("/login");
       })
       .catch(err => {
         seterror(String(err));
       });
+    console.log(res);
   };
   return (
     <>

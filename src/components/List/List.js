@@ -4,11 +4,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 import { getItems } from "../../apis/api";
+import { __getPost } from "../../redux/module/postSlice";
+import { useDispatch, useSelector } from "react-redux";
 import LoadingItem from "../../components/LoadingItem/LoadingItem";
 const List = () => {
+  const dispatch = useDispatch();
+  const postlist = useSelector(state => state.post.list);
+  const totalcount = postlist.length;
+  const maxpage = Math.ceil(totalcount / 6);
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [loadingItem, setLoadingItem] = useState(true);
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView({
@@ -23,7 +29,7 @@ const List = () => {
 
   const loadItems = useCallback(async () => {
     setLoading(true);
-    await getItems(page, 8).then(res => {
+    await getItems(page, 6).then(res => {
       setItems(prevState => [...prevState, res]);
     });
     setLoading(false);
@@ -37,14 +43,13 @@ const List = () => {
       <LoadingItem />
       <LoadingItem />
       <LoadingItem />
-      <LoadingItem />
-      <LoadingItem />
     </>
   );
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
     loadItems();
+    dispatch(__getPost());
   }, [loadItems]);
 
   useEffect(() => {
@@ -58,7 +63,6 @@ const List = () => {
     } else {
       setLoadingItem(true);
     }
-    console.log(items);
   }, [inView, loading]);
 
   return (
@@ -85,20 +89,14 @@ const List = () => {
 };
 
 const ItemDiv = styled.div`
-  background-color: #11ffee00;  /* 완전 투명 */
+  background-color: white;
   margin: 20px auto;
   width: 250px;
   height: 400px;
   box-shadow: 1px 1px 15px grey;
-  border-radius: 30px;
-  &:hover {
-    background-color: #764abc;
-    background-color: hsla(50, 33%, 25%, 0.75);
-    color: white;
-  }
 `;
 const ListDiv = styled.div`
-  width: 1100px;
+  width: 800px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -106,8 +104,10 @@ const ListDiv = styled.div`
 const ToTheTopButton = styled.button`
   position: fixed;
   right: 20px;
-  top: 825px;
-  margin: 5px 2px;
+
+  top: 100px;
+  height: 80px;
+
   padding: 15px;
   background-color: transparent;
   width: "100px";
@@ -134,7 +134,7 @@ const AddPostButton = styled.div`
   bottom: 80px;
 
   padding: 15px;
-  background-color: transparent;
+  background-color: white;
   width: "100px";
   font-size: 2rem;
   font-weight: bold;

@@ -1,5 +1,5 @@
 export const idCheck = id => {
-  let regExp = /^[a-zA-Z0-9]*$/;
+  let regExp = /^[a-zA-Z0-9]{4,12}$/;
   // 대문자 포함
   return regExp.test(id);
 };

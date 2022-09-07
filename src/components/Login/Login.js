@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-// import logo from "./testgif.gif";
-
 import { useDispatch } from "react-redux";
 
 import { idCheck } from "../../regExp";
@@ -36,10 +34,12 @@ function Login() {
   };
 
   const getlogin = async () => {
-    const res = await AccountAPI.getlogin(form).catch(err => {
-      seterror(String(err));
-      console.log(res);
-    });
+    AccountAPI.getlogin(form)
+      .then(response => console.log(response))
+      .catch(err => {
+        seterror(String(err));
+      });
+
     // dispatch(getUserInfo(res.data));
     // setAccessToken(response.AccessToken);
     // setRefreshToken(response.RefreshToken);
@@ -73,7 +73,6 @@ function Login() {
                   mg="auto"
                   _onClick={() => {
                     checklogin();
-                    console.log(window.location.origin);
                     checkForm && getlogin();
                   }}
                 >

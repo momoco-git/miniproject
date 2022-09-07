@@ -4,6 +4,6 @@ import post from "./module/postSlice";
 
 export default configureStore({
   reducer: {
-    posts: post,
+    post: post,
   },
 });
