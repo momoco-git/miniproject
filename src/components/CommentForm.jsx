@@ -10,17 +10,17 @@ const CommentForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [formHelper, setFormHelper] = useState("");
-  const [content, onChangeContentHandler, setContent] = useInput();
+  const [comment, onChangeCommentHandler, setComment] = useInput();
 
   const commentHandler = () => {
-    if (!content) {return setFormHelper("댓글을 입력하세요.")}
+    if (!comment) {return setFormHelper("댓글을 입력하세요.")}
     const postComment = {
       postId: id,
-      content: content,
+      comment: comment,
       commentLike: false,
     };
     dispatch(__addComment(postComment));
-    setContent("");
+    setComment("");
     setFormHelper("")
   };
 
@@ -32,8 +32,8 @@ const CommentForm = () => {
             length="400px"
             type="text"
             placeholder="댓글"
-            value={content || ""}
-            onChange={onChangeContentHandler}
+            value={comment || ""}
+            onChange={onChangeCommentHandler}
           />
         </div>
         <AllRounderButton buttonName={"저장"} onClick={commentHandler} />

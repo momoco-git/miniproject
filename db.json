@@ -2,16 +2,16 @@
   "post": [
     {
       "id": "4",
-      "title": "애국가1절",
-      "body": "동해물과 백두산이 마르고 닳도록",
+      "title": "신입 개발자 필독!",
+      "body": "신입 개발자 취업 준비시 절대 하지 말아야 할것!",
       "coverUrl": "https://www.youtube.com/watch?v=4aCynanIPUg",
       "like": true
     },
     {
       "id": "6",
-      "title": "애국가1절",
-      "body": "동해물과 백두산이 마르고 닳도록",
-      "coverUrl": "https://img.youtube.com/vi/GapXQj2ttdY/mqdefault.jpg",
+      "title": "김치맛집-골목식당-",
+      "body": "김치 맛집나오는데 먹으러 가고 싶네요ㅜㅜ",
+      "coverUrl": "https://www.youtube.com/watch?v=2n2pcobA6DI",
       "like": false
     },
     {
@@ -22,35 +22,35 @@
       "like": true
     },
     {
-      "id": 8,
+      "id": "8",
+      "title": "힌남노 태풍 피해 ㄷㄷ",
+      "body": "이번 태풍 역대급이라 던데 남부지방 피해가 크네요 ㅜㅜ",
+      "coverUrl": "https://www.youtube.com/watch?v=GapXQj2ttdY",
+      "like": false
+    },
+    {
+      "id": "9",
       "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
-      "id": 9,
+      "id": "10",
       "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
-      "id": 10,
+      "id": "11",
       "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
       "like": false
     },
     {
-      "id": 11,
-      "title": "123",
-      "body": "321",
-      "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
-      "like": false
-    },
-    {
-      "id": 12,
+      "id": "12",
       "title": "123",
       "body": "321",
       "coverUrl": "https://www.youtube.com/watch?v=rAkHg0jPRgs",
@@ -59,52 +59,46 @@
   ],
   "comments": [
     {
-      "postId": 1,
-      "content": "2222222222222222",
+      "postId": "4",
+      "comment": "2222222222222222",
       "commentLike": true,
-      "id": 1
+      "id": "1"
     },
     {
-      "postId": "1",
-      "content": "ㄴㄴㅊ",
+      "postId": "4",
+      "comment": "asdasd",
       "commentLike": false,
-      "id": 2
+      "id": "2"
     },
     {
-      "postId": "1",
-      "content": "123123123",
+      "postId": "4",
+      "comment": "ㅇㄹㅇㄹ",
       "commentLike": false,
-      "id": 3
+      "id": "3"
     },
     {
-      "postId": "1",
-      "content": "ㅊㅋㅍㅋㅌㅋㅍㅌㅋㅌ ㅍㅋㅌㅍ",
+      "postId": "4",
+      "comment": "ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ",
       "commentLike": false,
-      "id": 5
+      "id": "4"
     },
     {
-      "postId": "1",
-      "content": "ㅎ추츄ㅜ",
+      "postId": "4",
+      "comment": "123",
       "commentLike": false,
-      "id": 6
+      "id": "actsa5Q"
     },
     {
-      "postId": "3",
-      "content": "fasfsaf",
+      "postId": "4",
+      "comment": "12345",
       "commentLike": false,
-      "id": 7
+      "id": "OqQ1nbg"
     },
     {
-      "postId": "3",
-      "content": "adssadafasf",
+      "postId": "4",
+      "comment": "ㅁㄴㅇㅁㅇ",
       "commentLike": false,
-      "id": 8
-    },
-    {
-      "postId": "6",
-      "content": "asdasd",
-      "commentLike": false,
-      "id": 9
+      "id": "a6pNmL6"
     }
   ]
 }

@@ -11,7 +11,7 @@ function Video(){
       url="https://www.youtube.com/watch?v=GapXQj2ttdY" 
       width="100%" 
       height="100%" 
-      muted={true} //chrome정책으로 인해 자동 재생을 위해 mute 옵션을 true로 해주었다.
+      muted={true} 
       playing={true} 
       loop={true} />
   </PlayerWrapper>

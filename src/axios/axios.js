@@ -7,7 +7,7 @@ export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json",
+    "Comment-Type": "application/json",
   },
   // 토큰 추가하기
   withCredentials: true,
