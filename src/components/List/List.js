@@ -30,7 +30,7 @@ const List = () => {
   const loadItems = useCallback(async () => {
     setLoading(true);
     await getItems(page, 6).then(res => {
-      setItems(prevState => [...prevState, res]);
+      setItems(prevState => [...prevState, res.data]);
     });
     setLoading(false);
   }, [page]);
@@ -68,10 +68,10 @@ const List = () => {
   return (
     <ListDiv>
       {items &&
-        items.map(post =>
-          post.map((post, idx) => (
+        items.map(data =>
+          data.map((data, idx) => (
             <ItemDiv key={idx}>
-              <Item {...post} key={post.id} ref={ref} />
+              <Item {...data} key={data.id} ref={ref} />
             </ItemDiv>
           ))
         )}
@@ -92,8 +92,12 @@ const ItemDiv = styled.div`
   background-color: white;
   margin: 20px auto;
   width: 250px;
-  height: 400px;
+  height: 350px;
   box-shadow: 1px 1px 15px grey;
+  border-radius: 20px;
+  &:hover {
+    box-shadow: 5px 5px 5px #9ED2C6;
+  }        
 `;
 const ListDiv = styled.div`
   width: 800px;

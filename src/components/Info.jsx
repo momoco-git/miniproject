@@ -8,24 +8,23 @@ import AllRounderButton from "../elem/AllRounderButton";
 import ReactPlayer from 'react-player';
 
 
-const Info = ({ id, title, body, coverUrl, like }) => {
+const Info = ({ id, title, content, youtubeUrl, like }) => {
     const [toggle, setToggle] = useState(false);
     const [formHelper, setFormHelper] = useState(false);
     const [updateBody, onChangeBodyHandler, setUpdateBody] = useInput();
     const [updateTitle, onChangeTitleHandler, setUpdateTitle] = useInput();
     const [updateCoverUrl, onChangeCoverUrlHandler, setUpdateCoverUrl] = useInput();
-    // const URL = "https://www.youtube.com/watch?v=" + "{...coverUrl}"
     useEffect(() => {
       setUpdateTitle(title);
     }, [title, setUpdateTitle]);
   
     useEffect(() => {
-      setUpdateBody(body);
-    }, [body, setUpdateBody]);
+      setUpdateBody(content);
+    }, [content, setUpdateBody]);
   
     useEffect(() => {
-      setUpdateCoverUrl(coverUrl);
-    }, [coverUrl, setUpdateCoverUrl]);
+      setUpdateCoverUrl(youtubeUrl);
+    }, [youtubeUrl, setUpdateCoverUrl]);
   
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -38,8 +37,8 @@ const Info = ({ id, title, body, coverUrl, like }) => {
       const updatePost = {
         id,
         title: updateTitle,
-        body: updateBody,
-        coverUrl: updateCoverUrl,
+        content: updateBody,
+        youtubeUrl: updateCoverUrl,
       };
       window.location.reload();
       dispatch(__updatePost(updatePost));
@@ -66,7 +65,7 @@ const Info = ({ id, title, body, coverUrl, like }) => {
           <PlayerWrapper>
             <ReactPlayer 
               className="react-player" 
-              url={coverUrl} 
+              url={youtubeUrl} 
               width="100%" 
               height="100%" 
               muted={false}
@@ -77,7 +76,7 @@ const Info = ({ id, title, body, coverUrl, like }) => {
               playbackRate={true}/>
           </PlayerWrapper>
             <Title>{title}</Title>
-            <Body>{body}</Body>
+            <Content>{content}</Content>
           </StAlbumSet>
           <StButtonSet>
             {like ? <StLike onClick={likeHandler}>♥️</StLike> : <StLike onClick={likeHandler}>♡</StLike>}
@@ -105,14 +104,14 @@ const Info = ({ id, title, body, coverUrl, like }) => {
                   onChange={onChangeBodyHandler}
                   type="text"
                   placeholder="내용"
-                  defaultValue={body}
+                  defaultValue={content}
                 />
                 <InputBox
                   length="300px"
                   onChange={onChangeCoverUrlHandler}
                   type="text"
                   placeholder="Cover URL"
-                  defaultValue={coverUrl}
+                  defaultValue={youtubeUrl}
                 />
                 <AllRounderButton onClick={updateHandler} buttonName={"저장"} />
               </EditDiv>
@@ -162,7 +161,7 @@ const StAlbumImg = styled.img`
   object-fit: cover;
 `;
 
-const Body = styled.h2`
+const Content = styled.h2`
 text-align: center;`
 
 const Title = styled.h2``;
