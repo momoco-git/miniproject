@@ -5,22 +5,25 @@ import styled from "styled-components";
 import useInput from "../hooks/useInput";
 import { __addComment } from "../redux/module/commentSlice";
 import AllRounderButton from "../elem/AllRounderButton";
-
+import { CommentAPI } from "../apis/api";
 const CommentForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [formHelper, setFormHelper] = useState("");
   const [comment, onChangeCommentHandler, setComment] = useInput();
 
-  const commentHandler = () => {
+  const commentHandler = async () => {
     if (!comment) {
       return setFormHelper("댓글을 입력하세요.");
     }
     const postComment = {
-      postId: id,
+      postId: parseInt(id),
       content: comment,
     };
-    dispatch(__addComment(postComment));
+
+    const res = await CommentAPI.post(postComment);
+
+    // dispatch(__addComment(postComment));
     setComment("");
     window.location.reload();
   };

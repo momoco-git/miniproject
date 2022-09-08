@@ -27,7 +27,7 @@ const List = () => {
       behavior: "smooth",
     });
   };
-  console.log(items);
+
   const loadItems = useCallback(async () => {
     setLoading(true);
     await getItems(page, 6).then(res => {

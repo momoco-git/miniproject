@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { api } from "../axios/axios";
 import { getCookieName } from "../redux/Cookie";
+import { PostList } from "../apis/api";
 import {
   __getComment,
   __deleteComment,
@@ -15,21 +16,27 @@ import {
 import AllRounderButton from "../elem/AllRounderButton";
 
 const CommentList = props => {
-  const data = useSelector(state => state.posts.list);
   const commentdata = useSelector(state => state.comment.comment);
 
   const { id } = useParams();
-  const predata = data?.filter(x => x.id === parseInt(id));
-  const commentList = predata[0]?.commentList;
+
+  const [mycomment, setmycomment] = useState();
+
   const commentOwner = getCookieName();
 
   const [toggle, setToggle] = useState(false);
   const [formHelper, setFormHelper] = useState(false);
   const dispatch = useDispatch();
 
+  const getcommentlist = async () => {
+    const res = await PostList.getMyComment(id);
+    setmycomment(res.data.data.commentList);
+  };
+
   useEffect(() => {
-    dispatch(getComment(commentList));
-  }, [commentList]);
+    // dispatch(getComment(commentList));
+    getcommentlist();
+  }, []);
 
   const commentInput = useRef(null);
 
@@ -63,11 +70,11 @@ const CommentList = props => {
       <CommentListBox>
         <FormHelper>{formHelper}</FormHelper>
 
-        {commentList?.length <= 0 ? (
+        {mycomment?.length <= 0 ? (
           <div> 댓글이 없습니다!</div>
         ) : (
           <>
-            {commentList?.map((x, idx) => {
+            {mycomment?.map((x, idx) => {
               return (
                 <React.Fragment key={x?.id}>
                   <CommentFlex>
