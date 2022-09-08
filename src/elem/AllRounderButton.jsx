@@ -10,13 +10,13 @@ const Button = styled.button`
   width: ${(props) => props.length || "100px"};
   height: 35px;
   font-size: 15px;
-  color: #764abc;
+  color: black;
   cursor: pointer;
   border-radius: 5px;
   border: none;
   transition: 0.5s;
   &:hover {
-    background-color: #764abc;
+    background-color: #9ED2C6;
     color: white;
   }
 `;

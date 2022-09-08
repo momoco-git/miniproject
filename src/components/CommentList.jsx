@@ -72,10 +72,10 @@ const CommentList = props => {
                 <React.Fragment key={x?.id}>
                   <CommentFlex>
                     <CommnetBox>
-                      <div>
+                      <Div>
                         <Usernamebox>{x?.nickname}</Usernamebox>
                         <Commentin> {x?.content}</Commentin>
-                      </div>
+                      </Div>
                       {commentOwner === x?.username ? (
                         <AllRounderButton
                           length={"60px"}
@@ -102,12 +102,19 @@ const CommentList = props => {
 
 export default CommentList;
 
+const Div = styled.div`
+  margin-left: 10px;
+`;
+
+
 const CommentListBox = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-comment: space-around; */
   align-items: center;
   margin: auto;
+  background-color: #fcfcfc;
+  border-radius: 20px;
 `;
 
 const CommentFlex = styled.div`
@@ -116,15 +123,6 @@ const CommentFlex = styled.div`
   width: 100%;
 `;
 
-const CommentLike = styled.span`
-  font-size: 20px;
-  color: #fa1e2d;
-`;
-const Paragraph = styled.p`
-  display: inline-block;
-  word-wrap: break-word;
-  width: ${props => props.length};
-`;
 
 const FormHelper = styled.div`
   margin-top: 10px;
@@ -154,9 +152,9 @@ const CommnetBox = styled.div`
 `;
 const Commentin = styled.div`
   text-align: left;
-
   width: 100%;
 `;
 const Usernamebox = styled.div`
   font-size: 0.6rem;
+  font-weight: bolder;
 `;

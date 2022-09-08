@@ -49,9 +49,10 @@ const CommentFormBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 60%;
-  margin: 0px auto 10px auto;
-  box-shadow: 5px 5px 20px #999;
-  border-radius: 30px;
+  margin: 100px auto 2px auto;
+  box-shadow: 15px 15px 15px #999;
+  border-radius: 20px;
+  background-color: #fcfcfc;
 `;
 
 const CommentFormInput = styled.input`
@@ -84,7 +85,7 @@ const Button = styled.button`
   width: ${props => props.length || "100px"};
   height: 35px;
   font-size: 15px;
-  color: #764abc;
+  color: black;
   cursor: pointer;
   border-radius: 5px;
   border: none;

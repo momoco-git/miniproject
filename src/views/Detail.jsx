@@ -43,11 +43,14 @@ const Detail = () => {
 const DetailPage = styled.div`
   max-width: 1000px;
   min-width: 800px;
+  background-color: #f7ecde;
   margin: auto;
 `;
 const DetailComment = styled.div`
   width: 60%;
   margin: auto;
-  box-shadow: 5px 5px 10px #999;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 15px 15px 15px gray;
 `;
 export default Detail;

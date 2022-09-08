@@ -13,7 +13,7 @@ function Video({ id }) {
         url={detaildata[0]?.youtubeUrl}
         width="100%"
         height="100%"
-        muted={false}
+        muted={true}
         controls={true}
         volume={true}
         playing={true}
