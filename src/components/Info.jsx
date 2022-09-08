@@ -76,7 +76,7 @@ const Info = postid => {
   return (
     <StInfoContainer>
       <StAlbumSet>
-        <p>작성자 : {nickname}</p>
+        <P>작성자 : {nickname}</P>
         <Title>{title}</Title>
         <hr />
         <Body>{content}</Body>
@@ -86,7 +86,7 @@ const Info = postid => {
           onClick={() => {
             navigate(-1);
           }}
-          buttonName={"돌아가기"}
+          buttonName={"메인으로"}
         />
       </StButtonSet>
       {nickname === getCookieNick() && (
@@ -154,39 +154,41 @@ export default Info;
 
 
 const StInfoContainer = styled.div`
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
-  width : 60%
-  min-width : 800px;
-  margin : 50px auto;
+  min-width: 800px; */
+  margin: 50px auto;
 `;
 const StAlbumSet = styled.div`
-  margin: 30px 0 0 0;
-  width: 100%;
-`;
-const StAlbumImg = styled.img`
-  width: 450px;
-  height: 450px;
-  object-fit: cover;
+  margin-top: 5px;
+  width: 600px;
+  border-radius: 20px;
+  text-align: center;
 `;
 
 
 const Body = styled.h2`
-  text-align: left;
+  text-align: center;
+  font-size: 20px;
 `;
 
 
-const Title = styled.h2``;
+const Title = styled.h2`
+font-weight: bolder;
+`;
+
+const P = styled.h2`
+font-size: 10px;
+`;
+
+
+
 
 const StButtonSet = styled.div`
-  width: 450px;
+  width: 100px;
+  border-radius: 20px;
 `;
 
-const StLike = styled.div`
-  font-size: 40px;
-  color: #fa1e2d;
-`;
 const InputBox = styled.input`
   margin: 30px;
   padding: 8px 10px;
@@ -202,19 +204,13 @@ const InputBox = styled.input`
   }
 `;
 const EditDiv = styled.div`
-  box-shadow: 5px 5px 10px #999;
+  box-shadow: 15px 15px 15px #999;
+  background-color: white;
 `;
 const FormHelper = styled.div`
   margin-top: 10px;
   font-size: 20px;
   color: #fa1e2d;
 `;
-const PlayerWrapper = styled.div`
-  position: relative;
-  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */;
-  .react-player {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-`;
+
+

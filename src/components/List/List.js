@@ -79,29 +79,37 @@ const List = () => {
         )}
       {loadingItem ? loadSkeleton() : <EndMessage>마지막 페이지</EndMessage>}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
-      {getRefreshToken() && (
-        <AddPostButton
-          onClick={() => {
-            navigate("/addpost");
-          }}
-        >
-          +
-        </AddPostButton>
-      )}
+      <AddPostButton
+        onClick={() => {
+          navigate("/addpost");
+        }}
+      >
+        +
+      </AddPostButton>
     </ListDiv>
   );
 };
 
 const ItemDiv = styled.div`
-  background-color: white;
+  background-color: #f8f7f6;
   margin: 20px auto;
   width: 250px;
+
+  height: 300px;
+  box-shadow: 1px 1px 15px grey;
+  border-radius: 20px;
+  &:hover {
+    box-shadow: 5px 5px 5px #9ED2C6;
+    background-color: white;
+  }        
+
   height: 350px;
   box-shadow: 1px 1px 15px grey;
   border-radius: 20px;
   &:hover {
     box-shadow: 5px 5px 5px #9ed2c6;
   }
+
 `;
 const ListDiv = styled.div`
   width: 800px;
@@ -120,13 +128,13 @@ const ToTheTopButton = styled.button`
   background-color: transparent;
   width: "100px";
   font-size: 20px;
-  color: #764abc;
+  color: black;
   cursor: pointer;
   border-radius: 5px;
   border: none;
   transition: 0.5s;
   &:hover {
-    background-color: #764abc;
+    background-color: #9ED2C6;
     color: white;
   }
 `;
@@ -142,17 +150,17 @@ const AddPostButton = styled.div`
   bottom: 80px;
 
   padding: 15px;
-  background-color: white;
+  background-color: #f7ecde;
   width: "100px";
   font-size: 2rem;
   font-weight: bold;
-  color: #764abc;
+  color: black;
   cursor: pointer;
   border-radius: 100px;
   border: none;
   transition: 0.5s;
   &:hover {
-    background-color: #764abc;
+    background-color: #9ED2C6;
     color: white;
   }
 `;

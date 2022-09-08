@@ -7,6 +7,7 @@ import Modifypage from "./views/ModifyPage";
 import Signuppage from "./views/Signuppage";
 import Addpost from "./views/Addpost";
 import MyPage from "./views/Mypage";
+import "./App.css"
 function App() {
   return (
     <div>
