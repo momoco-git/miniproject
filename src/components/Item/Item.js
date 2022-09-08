@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
 import ReactPlayer from "react-player";
 
+
 const Item = React.forwardRef((post, ref) => {
   const { id, content, title, like, youtubeUrl, youtubeThumbnailUrl } = post;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isHovering, setIsHovering] = useState(false);
@@ -17,6 +19,7 @@ const Item = React.forwardRef((post, ref) => {
       like: !like,
     };
     window.location.reload();
+
     dispatch(__updatePost(updateLike));
     if (!like) alert("좋아요!");
     else alert("좋아요 취소!");
@@ -61,35 +64,43 @@ const Item = React.forwardRef((post, ref) => {
         </PlayerWrapper>
         <Title>{title}</Title>
         <Body>{content}</Body>
+
       </div>
       <div ref={ref} />
     </div>
   );
 });
 
-const CoverImg = styled.img`
-  width: 250px;
-  height: 250px;
-  margin: 20px auto 0;
-  object-fit: cover;
-`;
+const Thumbnail = styled.img`
+  width: 100% /* Player ratio: 100 / (1280 / 720) */;
+  height: 142px;
+  position: absolute;
+  top: 30px;
+  &:hover {
+    box-shadow: 10px 10px 10px gray;
+  }        
+  `;
 const Title = styled.h2`
   font-size: 17px;
   text-align: center;
   font-weight: bold;
+  margin-top: 40px;
 `;
-const Body = styled.h1`
-  font-size: 20px;
+const Content = styled.h1`
+  font-size: 15px;
   text-align: center;
+  margin-top: 30px;
 `;
 const Like = styled.div`
   position: absolute;
   background-color: white;
-  height: 30px;
-  width: 30px;
-  font-size: 24px;
-  transform: translate(30%, 770%);
-  border-radius: 50%;
+  font-weight: border;
+  height: 5;
+  width: 5;
+  margin-top: 200px;
+  font-size: 20px;
+  transform: translate(10px, 100px);
+  border-radius: 10%;
   color: #fa1e2d;
   box-shadow: 3px 3px 10px black;
   &:hover {
@@ -102,6 +113,7 @@ const PlayerWrapper = styled.div`
   padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */;
   .react-player {
     position: absolute;
+
     top: 0;
     left: 0;
   }
@@ -113,4 +125,5 @@ const YoutubeThumbnail = styled.img`
   top: 0;
   left: 0;
 `;
+
 export default Item;
