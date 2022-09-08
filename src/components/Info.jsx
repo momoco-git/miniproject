@@ -67,8 +67,8 @@ const Info = postid => {
     window.confirm("삭제하시겠습니까?");
     await PostList.getDeletePost(id);
     // dispatch(__deletePost(id));
-    // alert(title + " 삭제완료!");
-    // navigate("/");
+    alert(title + " 삭제완료!");
+    navigate("/");
   };
   return (
     <StInfoContainer>

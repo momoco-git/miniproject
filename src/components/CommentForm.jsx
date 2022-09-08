@@ -22,7 +22,7 @@ const CommentForm = () => {
     };
     dispatch(__addComment(postComment));
     setComment("");
-    setFormHelper("");
+    window.location.reload();
   };
 
   return (

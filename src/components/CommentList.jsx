@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { api } from "../axios/axios";
+import { getCookieName } from "../redux/Cookie";
 import {
   __getComment,
   __deleteComment,
@@ -18,8 +19,10 @@ const CommentList = props => {
   const commentdata = useSelector(state => state.comment.comment);
 
   const { id } = useParams();
-  const commentList = data[0]?.commentList;
-
+  const predata = data?.filter(x => x.id === parseInt(id));
+  const commentList = predata[0]?.commentList;
+  const commentOwner = getCookieName();
+  console.log(commentOwner);
   const [toggle, setToggle] = useState(false);
   const [formHelper, setFormHelper] = useState(false);
   const dispatch = useDispatch();
@@ -28,7 +31,7 @@ const CommentList = props => {
     dispatch(getComment(commentList));
   }, [commentList]);
   const commentInput = useRef(null);
-  console.log(commentList);
+
   const navigate = useNavigate();
 
   const onCommentHandler = e => {
@@ -72,14 +75,17 @@ const CommentList = props => {
                         <Usernamebox>{x?.nickname}</Usernamebox>
                         <Commentin> {x?.content}</Commentin>
                       </div>
-
-                      <AllRounderButton
-                        length={"60px"}
-                        buttonName={"삭제"}
-                        onClick={() => {
-                          onDeleteHandler(x.id);
-                        }}
-                      />
+                      {commentOwner === x?.username ? (
+                        <AllRounderButton
+                          length={"60px"}
+                          buttonName={"삭제"}
+                          onClick={() => {
+                            onDeleteHandler(x.id);
+                          }}
+                        />
+                      ) : (
+                        ""
+                      )}
                     </CommnetBox>
                     <hr />
                   </CommentFlex>
@@ -148,7 +154,7 @@ const CommnetBox = styled.div`
 const Commentin = styled.div`
   text-align: left;
 
-  width: 45vw;
+  width: 100%;
 `;
 const Usernamebox = styled.div`
   font-size: 0.6rem;
