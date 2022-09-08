@@ -7,9 +7,10 @@ import { getItems } from "../../apis/api";
 import { __getPost } from "../../redux/module/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingItem from "../../components/LoadingItem/LoadingItem";
+import { getRefreshToken } from "../../redux/Cookie";
 const List = () => {
   const dispatch = useDispatch();
-  const postlist = useSelector(state => state.post.list);
+  const postlist = useSelector(state => state.posts.list);
   const totalcount = postlist.length;
   const maxpage = Math.ceil(totalcount / 6);
   const [items, setItems] = useState([]);
@@ -45,11 +46,12 @@ const List = () => {
       <LoadingItem />
     </>
   );
-
+  useEffect(() => {
+    dispatch(__getPost());
+  }, []);
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
     loadItems();
-    dispatch(__getPost());
   }, [loadItems]);
 
   useEffect(() => {
@@ -77,13 +79,15 @@ const List = () => {
         )}
       {loadingItem ? loadSkeleton() : <EndMessage>마지막 페이지</EndMessage>}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
-      <AddPostButton
-        onClick={() => {
-          navigate("/addpost");
-        }}
-      >
-        +
-      </AddPostButton>
+      {getRefreshToken() && (
+        <AddPostButton
+          onClick={() => {
+            navigate("/addpost");
+          }}
+        >
+          +
+        </AddPostButton>
+      )}
     </ListDiv>
   );
 };

@@ -7,6 +7,7 @@ const Button = ({ children, ...rest }) => {
       {...rest}
       onClick={rest._onClick}
       type={rest.type}
+      disable={rest.disable}
       onMouseDown={rest._onMouseDown}
     >
       {children}
@@ -86,6 +87,3 @@ const BtnBx = styled.button`
   margin: ${props => props.mg};
 `;
 export default Button;
-
-
-

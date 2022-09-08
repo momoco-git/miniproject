@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { api } from "../../axios/axios";
 const initialState = {
   list: [],
   isLoading: false,
@@ -22,9 +22,11 @@ export const __getPost = createAsyncThunk(
   "post/GET_Post",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://54.177.177.138:8080/api/post");
+      const data = await axios.get(
+        `http://54.177.177.138:8080/api/post/${payload}`
+      );
 
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -35,10 +37,7 @@ export const __addPost = createAsyncThunk(
   "post/ADD_Post",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post(
-        "http://54.177.177.138:8080/api/auth/post",
-        payload
-      );
+      const data = await api.post("/api/auth/post", payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -50,9 +49,7 @@ export const __deletePost = createAsyncThunk(
   "post/DELETE_Post",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.delete(
-        "http://54.177.177.138:8080/api/auth/post" + "/" + payload
-      );
+      const data = await api.delete(`/api/auth/post/${payload}`);
       return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -65,12 +62,15 @@ export const __updatePost = createAsyncThunk(
   "post/UPDATE_POST",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.patch(
-        "http://54.177.177.138:8080/api/auth/post" + "/" + payload.id,
-        payload
-      );
-      return thunkAPI.fulfillWithValue(data.data);
+      const data = await api.put(`/api/auth/post/${payload.id}`, {
+        title: payload.title,
+        content: payload.content,
+        youtubeUrl: payload.youtubeUrl,
+      });
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
+      window.location.reload();
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -78,7 +78,7 @@ export const __updatePost = createAsyncThunk(
 
 const posts = createSlice({
   name: "posts",
-  initialState,
+  initialState: { list: [] },
   reducers: {},
   extraReducers: {
     // getMusic Thunk
@@ -90,7 +90,8 @@ const posts = createSlice({
     [__getPost.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경
       state.isDone = true; // 네트워크 요청이 끝났으니, false로 변경
-      state.list = [...state.list].concat(action.payload); // Store에 있는 list에 서버에서 가져온 music를 넣음
+      state.list = [...state.list].concat(action.payload);
+      // Store에 있는 list에 서버에서 가져온 music를 넣음
     },
     [__getPost.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경
@@ -126,7 +127,7 @@ const posts = createSlice({
     },
     [__updatePost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.list = state.list.map(p =>
+      state.list = state.list.map(post =>
         post.id === action.payload.id ? { ...action.payload } : post
       );
     },
@@ -141,4 +142,5 @@ const posts = createSlice({
     // },
   },
 });
+
 export default posts.reducer;

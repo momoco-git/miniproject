@@ -29,18 +29,18 @@ function Signup() {
     }
   };
   const postAccount = async () => {
-    const res = AccountAPI.getSignInAccount(form)
-      .then(response => {
-        if (response.data === "중복된 아이디입니다.") {
-          seterror(response.data);
-        }
+    try {
+      const res = await AccountAPI.getSignInAccount(form);
+      if (res.data.success) {
         window.alert("가입완료!");
         navigate("/login");
-      })
-      .catch(err => {
-        seterror(String(err));
-      });
-    console.log(res);
+      } else {
+        let errormessage = res.data.error.message;
+        return seterror(errormessage);
+      }
+    } catch (e) {
+      seterror(String(e));
+    }
   };
   return (
     <>

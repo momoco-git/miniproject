@@ -1,31 +1,53 @@
-import React, { useEffect, useRef} from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import {__getComment, __deleteComment, __updateComment } from '../redux/module/commentSlice';
-import AllRounderButton from '../elem/AllRounderButton';
+import React, { useEffect, useRef } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { api } from "../axios/axios";
+import { getCookieName } from "../redux/Cookie";
+import { PostList } from "../apis/api";
+import {
+  __getComment,
+  __deleteComment,
+  __updateComment,
+  getComment,
+} from "../redux/module/commentSlice";
+import AllRounderButton from "../elem/AllRounderButton";
 
-const CommentList = ({ id, commentLike, comment }) => {
+const CommentList = props => {
+  const commentdata = useSelector(state => state.comment.comment);
+
+  const { id } = useParams();
+
+  const [mycomment, setmycomment] = useState();
+
+  const commentOwner = getCookieName();
+
   const [toggle, setToggle] = useState(false);
   const [formHelper, setFormHelper] = useState(false);
   const dispatch = useDispatch();
 
+  const getcommentlist = async () => {
+    const res = await PostList.getMyComment(id);
+    setmycomment(res.data.data.commentList);
+  };
+
   useEffect(() => {
-    dispatch(
-      __getComment()
-    )
-  },[dispatch])
+    // dispatch(getComment(commentList));
+    getcommentlist();
+  }, []);
+
   const commentInput = useRef(null);
-  
+
   const navigate = useNavigate();
-  
-  const onCommentHandler = (e) => {
+
+  const onCommentHandler = e => {
     e.preventDefault();
     if (!commentInput.current.value) {
-      return setFormHelper('내용을 입력해주세요.');
+      return setFormHelper("내용을 입력해주세요.");
     }
-    console.log(CommentList);
+
     dispatch(
       __updateComment({
         id,
@@ -34,69 +56,50 @@ const CommentList = ({ id, commentLike, comment }) => {
     );
     commentInput.current.value = "";
 
-    setFormHelper("")
-    setToggle(false)
-    
+    setFormHelper("");
+    setToggle(false);
   };
 
-  const likeHandler = () => {
-    const updateLike = {
-      id,
-      commentLike: !commentLike
-    }
-    dispatch(__updateComment(updateLike))
-  }
-
-
-  const onDeleteHandler = (e) => {
-    e.preventDefault();
-    dispatch(__deleteComment(id))
-    navigate(0)
-  }
+  const onDeleteHandler = async commentid => {
+    window.confirm("댓글을 삭제하시겠습니까?");
+    const res = await api.delete(`/api/auth/comment/${commentid}`);
+    window.location.reload();
+  };
   return (
     <>
       <CommentListBox>
         <FormHelper>{formHelper}</FormHelper>
-        {toggle ? (
-          <>
-            <CommentFormInput
-              length="160px"
-              type="text"
-              placeholder="댓그"
-              defaultValue={comment}
-              ref={commentInput}
-            />
-            <Paragraph length="240px">{}</Paragraph>
-            <AllRounderButton
-              length={"60px"}
-              buttonName={"취소"}
-              onClick={() => {
-                setToggle(!toggle);
-                setFormHelper(false)
-              }}
-            />
-            <AllRounderButton
-              length={"60px"}
-              buttonName={"저장"}
-              onClick={onCommentHandler}
-            />
-          </>
+
+        {mycomment?.length <= 0 ? (
+          <div> 댓글이 없습니다!</div>
         ) : (
           <>
-            <Paragraph length="240px">{comment}</Paragraph>
-            {/* {commentLike ? (
-              <CommentLike onClick={likeHandler}>♥️</CommentLike>
-            ) : (
-              <CommentLike onClick={likeHandler}>♡</CommentLike>
-            )} */}
-            <AllRounderButton
-              length={"60px"}
-              buttonName={"수정"}
-              onClick={() => {
-                setToggle(!toggle);
-              }}
-            />
-            <AllRounderButton length={"60px"} buttonName={"삭제"} onClick={onDeleteHandler}/>
+            {mycomment?.map((x, idx) => {
+              return (
+                <React.Fragment key={x?.id}>
+                  <CommentFlex>
+                    <CommnetBox>
+                      <div>
+                        <Usernamebox>{x?.nickname}</Usernamebox>
+                        <Commentin> {x?.content}</Commentin>
+                      </div>
+                      {commentOwner === x?.username ? (
+                        <AllRounderButton
+                          length={"60px"}
+                          buttonName={"삭제"}
+                          onClick={() => {
+                            onDeleteHandler(x.id);
+                          }}
+                        />
+                      ) : (
+                        ""
+                      )}
+                    </CommnetBox>
+                    <hr />
+                  </CommentFlex>
+                </React.Fragment>
+              );
+            })}
           </>
         )}
       </CommentListBox>
@@ -107,11 +110,17 @@ const CommentList = ({ id, commentLike, comment }) => {
 export default CommentList;
 
 const CommentListBox = styled.div`
-  height: 50px;
   display: flex;
+  flex-direction: column;
   /* justify-comment: space-around; */
   align-items: center;
   margin: auto;
+`;
+
+const CommentFlex = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const CommentLike = styled.span`
@@ -121,7 +130,7 @@ const CommentLike = styled.span`
 const Paragraph = styled.p`
   display: inline-block;
   word-wrap: break-word;
-  width: ${(props) => props.length};
+  width: ${props => props.length};
 `;
 
 const FormHelper = styled.div`
@@ -131,7 +140,7 @@ const FormHelper = styled.div`
 `;
 const CommentFormInput = styled.input`
   margin: 15px;
-  width: ${(props) => props.length};
+  width: ${props => props.length};
   font-size: 18px;
   border: none;
   text-align: center;
@@ -141,4 +150,20 @@ const CommentFormInput = styled.input`
   &::placeholder {
     color: #aaa;
   }
+`;
+const CommnetBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  justify-content: space-between;
+  align-items: center;
+`;
+const Commentin = styled.div`
+  text-align: left;
+
+  width: 100%;
+`;
+const Usernamebox = styled.div`
+  font-size: 0.6rem;
 `;

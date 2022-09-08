@@ -4,28 +4,38 @@ import { Flex, Input, Button } from "../../elem/index";
 import useForm from "../../hooks/useForm";
 import { AccountAPI, PostList } from "../../apis/api";
 import AlertBar from "../alertbar/Alertbar";
+import { useDispatch } from "react-redux";
+import { __addPost } from "../../redux/module/postSlice";
+import { useNavigate } from "react-router-dom";
 const AddPost = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [form, onChange, reset, setForm] = useForm("");
   const [checkForm, setcheckForm] = useState(false);
+  const [onebutton, setonebutton] = useState(false);
   const checkpost = async () => {
     if (form.title === undefined) {
       return window.alert("제목을 입력하세요");
     } else if (form.content === undefined) {
       return window.alert("내용을 적어주세요");
-    } else if (form.url === undefined) {
+    } else if (form.youtubeUrl === undefined) {
       return window.alert("url을 입력해주세요");
     } else {
       return setcheckForm(true);
     }
   };
   const addpost = async () => {
-    PostList.getAddPost(form)
-      .then(() => {
-        window.alert("추가완료");
-      })
-      .catch(err => {
-        window.alert(String(err));
-      });
+    setonebutton(true);
+    const res = await PostList.getAddPost(form).catch(e =>
+      window.alert(String(e))
+    );
+    if (res.data.success) {
+      window.alert("저장되었습니다!");
+      navigate(-1);
+    } else {
+      window.alert(res.data.error.message);
+    }
+    setonebutton(false);
   };
   return (
     <>
@@ -48,12 +58,13 @@ const AddPost = () => {
               ></Input>
               <Input
                 placeholder="추천해주실 영상 URL을 입력해주세요"
-                name="url"
+                name="youtubeUrl"
                 _onChange={onChange}
               ></Input>
 
               <Button
                 outline={true}
+                disable={onebutton}
                 width="60%"
                 mg="20px auto 20px auto"
                 _onClick={() => {
