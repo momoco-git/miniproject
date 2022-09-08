@@ -6,5 +6,6 @@ export default configureStore({
   reducer: {
     posts: post,
     comment: comment,
+    devTools: process.env.NODE_ENV !== "production",
   },
 });

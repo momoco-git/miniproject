@@ -30,6 +30,7 @@ const CommentList = props => {
   useEffect(() => {
     dispatch(getComment(commentList));
   }, [commentList]);
+
   const commentInput = useRef(null);
 
   const navigate = useNavigate();
