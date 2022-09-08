@@ -14,6 +14,8 @@ function Video({ id }) {
         width="100%"
         height="100%"
         muted={false}
+        controls={true}
+        volume={true}
         playing={true}
         loop={true}
       />

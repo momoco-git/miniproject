@@ -22,7 +22,7 @@ const CommentList = props => {
   const predata = data?.filter(x => x.id === parseInt(id));
   const commentList = predata[0]?.commentList;
   const commentOwner = getCookieName();
-  console.log(commentOwner);
+
   const [toggle, setToggle] = useState(false);
   const [formHelper, setFormHelper] = useState(false);
   const dispatch = useDispatch();
