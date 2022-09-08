@@ -7,7 +7,7 @@ import { getItems } from "../../apis/api";
 import { __getPost } from "../../redux/module/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingItem from "../../components/LoadingItem/LoadingItem";
-import { getRefreshToken } from "../../redux/Cookie";
+import { getAccessToken, getRefreshToken } from "../../redux/Cookie";
 const List = () => {
   const dispatch = useDispatch();
   const postlist = useSelector(state => state.posts.list);
@@ -100,8 +100,8 @@ const ItemDiv = styled.div`
   box-shadow: 1px 1px 15px grey;
   border-radius: 20px;
   &:hover {
-    box-shadow: 5px 5px 5px #9ED2C6;
-  }        
+    box-shadow: 5px 5px 5px #9ed2c6;
+  }
 `;
 const ListDiv = styled.div`
   width: 800px;

@@ -9,19 +9,18 @@ import {
 
 const refresh = async config => {
   const refreshToken = getRefreshToken();
-  const preaccessToken = getAccessToken();
+  const accessToken = getAccessToken();
 
   // 토큰이 만료되었고, refreshToken 이 저장되어 있을 때
-  if (!preaccessToken && refreshToken) {
+  if (!accessToken && refreshToken) {
     // 토큰 갱신 서버통신
 
     // const response = await AccountAPI.getlogin(body);
     // 여기 도 백이랑 연결되면 토큰 가져오기 수정
-    config.headers["Authorization"] = `Bearer ${preaccessToken}`;
+    config.headers["Authorization"] = `${accessToken}`;
     config.headers["Refresh-Token"] = `${refreshToken}`;
   } else {
-    const accessToken = preaccessToken?.split(" ")[1];
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
+    config.headers["Authorization"] = `${accessToken}`;
     config.headers["Refresh-Token"] = `${refreshToken}`;
   }
 

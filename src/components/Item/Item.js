@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { __updatePost } from "../../redux/module/postSlice";
 import ReactPlayer from "react-player";
 
-
 const Item = React.forwardRef((post, ref) => {
   const { id, content, title, like, youtubeUrl, youtubeThumbnailUrl } = post;
 
@@ -63,8 +62,7 @@ const Item = React.forwardRef((post, ref) => {
           )}
         </PlayerWrapper>
         <Title>{title}</Title>
-        <Body>{content}</Body>
-
+        <Content>{content}</Content>
       </div>
       <div ref={ref} />
     </div>
@@ -78,8 +76,8 @@ const Thumbnail = styled.img`
   top: 30px;
   &:hover {
     box-shadow: 10px 10px 10px gray;
-  }        
-  `;
+  }
+`;
 const Title = styled.h2`
   font-size: 17px;
   text-align: center;
