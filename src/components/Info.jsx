@@ -68,7 +68,7 @@ const Info = ({ id, title, content, youtubeUrl, like }) => {
               url={youtubeUrl} 
               width="100%" 
               height="100%" 
-              muted={false}
+              muted={true}
               playing={true} 
               loop={true} 
               controls={true}

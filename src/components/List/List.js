@@ -75,7 +75,7 @@ const List = () => {
             </ItemDiv>
           ))
         )}
-      {loadingItem ? loadSkeleton() : <EndMessage>end of the page</EndMessage>}
+      {loadingItem ? loadSkeleton() : <EndMessage>마지막 페이지</EndMessage>}
       <ToTheTopButton onClick={scrollToTop}>TOP</ToTheTopButton>
       <AddPostButton
         onClick={() => {
