@@ -10,6 +10,7 @@ export const AccountAPI = {
 
 export const PostList = {
   getPostList: () => api.get("/api/post"),
+  getMyComment: id => api.get(`/api/post/${id}`),
   getMyPost: username => api.get(`/api/post?username=${username}`),
   getAddPost: form => api.post("/api/auth/post", form),
   getDeletePost: postId => api.delete(`/api/auth/post/${postId}`),
@@ -17,7 +18,7 @@ export const PostList = {
 };
 
 export const CommentAPI = {
-  post: data => api.post("/api/auth/comment", data),
+  post: data => api.post(`/api/auth/comment`, data),
 };
 
 const URL = "http://54.177.177.138:8080/api/post";

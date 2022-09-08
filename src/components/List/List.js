@@ -7,7 +7,7 @@ import { getItems } from "../../apis/api";
 import { __getPost } from "../../redux/module/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingItem from "../../components/LoadingItem/LoadingItem";
-import { getRefreshToken } from "../../redux/Cookie";
+import { getAccessToken, getRefreshToken } from "../../redux/Cookie";
 const List = () => {
   const dispatch = useDispatch();
   const postlist = useSelector(state => state.posts.list);
@@ -27,7 +27,7 @@ const List = () => {
       behavior: "smooth",
     });
   };
-  console.log(items);
+
   const loadItems = useCallback(async () => {
     setLoading(true);
     await getItems(page, 6).then(res => {
@@ -94,6 +94,7 @@ const ItemDiv = styled.div`
   background-color: #f8f7f6;
   margin: 20px auto;
   width: 250px;
+
   height: 300px;
   box-shadow: 1px 1px 15px grey;
   border-radius: 20px;
@@ -101,6 +102,14 @@ const ItemDiv = styled.div`
     box-shadow: 5px 5px 5px #9ED2C6;
     background-color: white;
   }        
+
+  height: 350px;
+  box-shadow: 1px 1px 15px grey;
+  border-radius: 20px;
+  &:hover {
+    box-shadow: 5px 5px 5px #9ed2c6;
+  }
+
 `;
 const ListDiv = styled.div`
   width: 800px;

@@ -14,9 +14,11 @@ const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+
   const { isLoading, error, list } = useSelector(state => state.posts);
 
   const getPost = list.find(post => post.id === id);
+
   useEffect(() => {
     dispatch(__getPost(id));
   }, [dispatch]);

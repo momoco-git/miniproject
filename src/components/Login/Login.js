@@ -37,7 +37,7 @@ function Login() {
   const getlogin = async () => {
     try {
       const res = await AccountAPI.getlogin(form);
-      console.log(res);
+
       if (res.data.success) {
         const { username, nickname, accessToken, refreshToken } =
           res?.data.data;

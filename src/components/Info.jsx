@@ -29,6 +29,7 @@ const Info = postid => {
     setUpdateTitle(title);
   }, [title, setUpdateTitle]);
 
+
   useEffect(() => {
     setUpdatecontent(content);
   }, [content, setUpdatecontent]);
@@ -44,10 +45,12 @@ const Info = postid => {
     e.preventDefault();
     if (!updateTitle) {
       return setFormHelper("제목을 입력하세요");
+
     }
     if (!updatecontent) {
       return setFormHelper("내용을 입력하세요");
     }
+
     if (!updateyoutubeUrl) {
       return setFormHelper("URL을 입력하세요");
     }
@@ -117,6 +120,7 @@ const Info = postid => {
             </EditDiv>
           ) : null}
           {toggle ? (
+
             <AllRounderButton
               onClick={e => {
                 e.preventDefault();
@@ -125,6 +129,7 @@ const Info = postid => {
               }}
               buttonName={"닫기"}
             />
+
           ) : (
             <AllRounderButton
               onClick={e => {
@@ -147,6 +152,7 @@ const Info = postid => {
 
 export default Info;
 
+
 const StInfoContainer = styled.div`
   /* display: flex;
   flex-wrap: wrap;
@@ -160,10 +166,12 @@ const StAlbumSet = styled.div`
   text-align: center;
 `;
 
+
 const Body = styled.h2`
   text-align: center;
   font-size: 20px;
 `;
+
 
 const Title = styled.h2`
 font-weight: bolder;
@@ -172,6 +180,9 @@ font-weight: bolder;
 const P = styled.h2`
 font-size: 10px;
 `;
+
+
+
 
 const StButtonSet = styled.div`
   width: 100px;
